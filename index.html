@@ -354,8 +354,14 @@
         }
 
         function nextSlide() {
-            showSlide(index + 1);
-        }
+    if (index >= dots.length - 1) {
+        index = 0; // Springt zurück zum ersten Bild
+    } else {
+        index++;
+    }
+    showSlide(index);
+}
+
 
         function previousSlide() {
             showSlide(index - 1);
