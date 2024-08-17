@@ -10,287 +10,175 @@
             padding: 0;
             font-family: 'Helvetica Neue', Arial, sans-serif;
             background-color: #ffffff;
-            overflow-x: hidden; /* Verhindert horizontales Scrollen */
+            overflow-x: hidden;
         }
-
-        /* Styles für das obere Karussell */
-        .slider {
-            width: 100%;
-            height: 100vh;
-            max-width: 100%;
-            max-height: 100%;
-            overflow: hidden;
-            margin-bottom: 20px;
-            position: relative;
-        }
-        .slides {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.6s ease-in-out;
-        }
-        .slide {
-            width: 100%;
-            height: 100%;
-            flex: 1 0 100%;
-            position: relative;
-        }
-        .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            background-color: #ccc; /* Fallback-Farbe, falls das Bild nicht geladen wird */
-        }
-        .dots {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            justify-content: center;
-            gap: 5px;
-            z-index: 10;
-        }
-        .dot {
-            width: 10px;
-            height: 10px;
-            background-color: #bbb;
-            border-radius: 50%;
-            display: inline-block;
-            transition: background-color 0.3s ease;
-            cursor: pointer;
-        }
-        .dot.active {
-            background-color: #717171;
-        }
-
-        .arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 40px;
-            height: 40px;
+        .navbar {
             display: flex;
             justify-content: center;
             align-items: center;
-            cursor: pointer;
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
-            background-color: rgba(0, 0, 0, 0.5);
-            border-radius: 50%;
-            z-index: 10;
-        }
-        .arrow.left {
-            left: 10px;
-        }
-        .arrow.right {
-            right: 10px;
-        }
-        .arrow:before {
-            content: '';
-            display: block;
-            width: 10px;
-            height: 10px;
-            border-left: 2px solid white;
-            border-bottom: 2px solid white;
-        }
-        .arrow.left:before {
-            transform: rotate(45deg);
-        }
-        .arrow.right:before {
-            transform: rotate(-135deg);
-        }
-        .slider:hover .arrow {
-            opacity: 1;
-        }
-
-        /* Styles für die 4 statischen Bilder */
-        .image-grid {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            padding: 20px;
-            flex-wrap: wrap;
-        }
-        .image-grid .static-image-container {
-            width: calc(25% - 10px);
-            max-width: 300px;
-            height: auto;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-        }
-        .static-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 15px;
-            background-color: #ccc; /* Fallback-Farbe, falls das Bild nicht geladen wird */
-        }
-
-        /* Styles für das untere Karussell */
-        .carousel-container {
-            width: 90%;
-            max-width: 500px;
-            margin: 20px auto;
-            height: auto;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-            position: relative;
-            transition: transform 0.3s ease;
-        }
-        .carousel-wrapper {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            will-change: transform;
-        }
-        .carousel-slide {
-            min-width: 100%;
-            box-sizing: border-box;
-            position: relative;
-        }
-        .hover-shadow img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.3s ease;
-            object-fit: cover;
-            background-color: #ccc; /* Fallback-Farbe, falls das Bild nicht geladen wird */
-        }
-        .info-button {
-            position: absolute;
-            bottom: 3px;
-            left: 50%;
-            transform: translate(-50%, -50%) translateY(30px);
-            padding: 10px 20px;
-            border-radius: 25px;
-            border: none;
-            font-size: 16px;
-            cursor: pointer;
             background-color: #2d2d30;
-            color: white;
-            opacity: 0;
-            transition: opacity 0.5s ease, transform 0.5s ease, background-color 0.5s ease;
-            font-family: inherit;
-            text-decoration: none;
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
-        .hover-shadow:hover .info-button {
-            opacity: 1;
-            transform: translate(-50%, -50%) translateY(0);
-        }
-        .info-button:hover {
-            background-color: #0071e3;
-        }
-        .carousel-controls {
-            position: absolute;
-            bottom: 5px;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-        .dot {
-            width: 10px;
-            height: 10px;
-            background-color: #bbb;
-            border-radius: 50%;
-            display: inline-block;
-            transition: background-color 0.3s ease;
-            cursor: pointer;
-            margin: 0 5px;
-        }
-        .dot.active {
-            background-color: #717171;
-        }
-        .arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 40px;
+        .navbar img {
             height: 40px;
-            border-radius: 50%;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
+            margin-right: 20px;
         }
-        .arrow.left {
-            left: 10px;
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            font-weight: bold;
         }
-        .arrow.right {
-            right: 10px;
+        .navbar a:hover {
+            color: #0071e3;
         }
-        .arrow:before {
-            content: '';
-            display: block;
-            width: 10px;
-            height: 10px;
-            border-left: 2px solid white;
-            border-bottom: 2px solid white;
+        .section {
+            padding: 50px;
+            text-align: center;
         }
-        .arrow.left:before {
-            transform: rotate(45deg);
-        }
-        .arrow.right:before {
-            transform: rotate(-135deg);
-        }
-
-        @media (max-width: 768px) {
-            .carousel-container {
-                width: 95%;
-                max-width: 100%;
-                height: auto;
-            }
-            .info-button {
-                font-size: 14px;
-                padding: 8px 16px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .info-button {
-                font-size: 12px;
-                padding: 6px 12px;
-            }
+        hr {
+            margin: 50px 0;
+            border: none;
+            border-top: 1px solid #ccc;
         }
     </style>
 </head>
 <body>
 
-    <!-- Oberes Karussell -->
-    <div class="slider">
-        <div class="slides">
-            <div class="slide">
-                <a href="https://www.bolibro.com/am-beliebtesten" target="_blank">
-                    <img src="https://i.imgur.com/OhY5hBy.jpg" alt="Bild 1">
-                </a>
-            </div>
-            <div class="slide">
-                <a href="https://www.bolibro.com/angebote" target="_blank">
-                    <img src="https://i.imgur.com/xca3TGg.jpg" alt="Bild 2">
-                </a>
-            </div>
-            <div class="slide">
-                <a href="https://www.bolibro.com/bibliothek" target="_blank">
-                    <img src="https://i.imgur.com/bRFkewI.jpg" alt="Bild 3">
-                </a>
-            </div>
-        </div>
-        <div class="dots">
-            <span class="dot active"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-        </div>
-        <div class="arrow left"></div>
-        <div class="arrow right"></div>
+    <!-- Navigationsleiste -->
+    <div class="navbar">
+        <img src="https://i.imgur.com/I7qeZqa.png" alt="Logo">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="#blog">Blog</a>
+        <a href="#faq">FAQ</a>
     </div>
 
-    <!-- Grid mit 4 statischen Bildern -->
-    <div class="image-grid">
+    <!-- Begrüßungsbild mit Transition -->
+    <div class="section" id="home">
+        <div class="image-container">
+            <img src="https://i.imgur.com/zVkSqIt.jpg" alt="Begrüßungsbild">
+        </div>
+
+        <script>
+            // Funktion, um zu prüfen, ob der Besucher zum ersten Mal die Seite besucht
+            function checkFirstVisit() {
+                if (!localStorage.getItem('firstVisit')) {
+                    // Markiere den Besuch als nicht mehr "erstes Mal"
+                    localStorage.setItem('firstVisit', 'true');
+                    // Zeige das Bild durch Hinzufügen der Klasse 'visible'
+                    document.querySelector('.image-container').classList.add('visible');
+                } else {
+                    // Falls es nicht der erste Besuch ist, das Bild sofort sichtbar machen
+                    document.querySelector('.image-container').classList.add('visible');
+                }
+            }
+
+            // Aufrufen der Funktion beim Laden der Seite
+            window.onload = checkFirstVisit;
+        </script>
+    </div>
+
+    <!-- Klassisches Karussell -->
+    <div class="section" id="services">
+        <div class="slider">
+            <div class="slides">
+                <div class="slide">
+                    <a href="https://www.bolibro.com/am-beliebtesten" target="_blank">
+                        <img src="https://i.imgur.com/OhY5hBy.jpg" alt="Bild 1">
+                    </a>
+                </div>
+                <div class="slide">
+                    <a href="https://www.bolibro.com/angebote" target="_blank">
+                        <img src="https://i.imgur.com/xca3TGg.jpg" alt="Bild 2">
+                    </a>
+                </div>
+                <div class="slide">
+                    <a href="https://www.bolibro.com/bibliothek" target="_blank">
+                        <img src="https://i.imgur.com/bRFkewI.jpg" alt="Bild 3">
+                    </a>
+                </div>
+            </div>
+            <div class="dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+            <div class="arrow left"></div>
+            <div class="arrow right"></div>
+        </div>
+
+        <script>
+            let index = 0;
+            const slides = document.querySelector('.slides');
+            const dots = document.querySelectorAll('.dot');
+            const leftArrow = document.querySelector('.arrow.left');
+            const rightArrow = document.querySelector('.arrow.right');
+            let slideInterval;
+
+            function showSlide(n) {
+                if (n >= dots.length) {
+                    index = 0;
+                } else if (n < 0) {
+                    index = dots.length - 1;
+                } else {
+                    index = n;
+                }
+                slides.style.transform = `translateX(-${index * 100}%)`;
+                dots.forEach(dot => dot.classList.remove('active'));
+                dots[index].classList.add('active');
+            }
+
+            function nextSlide() {
+                showSlide(index + 1);
+            }
+
+            function previousSlide() {
+                showSlide(index - 1);
+            }
+
+            function startSlider() {
+                slideInterval = setInterval(nextSlide, 3000);
+            }
+
+            function stopSlider() {
+                clearInterval(slideInterval);
+            }
+
+            document.querySelectorAll('.dot').forEach((dot, idx) => {
+                dot.addEventListener('click', () => {
+                    showSlide(idx);
+                    stopSlider();
+                });
+            });
+
+            slides.addEventListener('mouseover', stopSlider);
+            slides.addEventListener('mouseout', startSlider);
+
+            leftArrow.addEventListener('click', previousSlide);
+            rightArrow.addEventListener('click', nextSlide);
+
+            document.addEventListener('visibilitychange', () => {
+                if (document.visibilityState === 'visible') {
+                    startSlider();
+                } else {
+                    stopSlider();
+                }
+            });
+
+            startSlider();
+            showSlide(index);
+        </script>
+    </div>
+
+    <!-- 4 Statische Bilder nebeneinander -->
+    <div class="section" id="about" style="display: flex; justify-content: space-between;">
         <div class="static-image-container">
             <img src="https://i.imgur.com/BwstVUp.jpg" alt="Statisches Bild 1" class="static-image">
         </div>
@@ -305,158 +193,186 @@
         </div>
     </div>
 
-    <!-- Unteres Karussell mit Punkten und mittigem Button -->
-    <div class="carousel-container">
-        <div class="carousel-wrapper">
-            <div class="carousel-slide">
-                <div class="hover-shadow">
-                    <img src="https://i.imgur.com/e2Z3EkO.jpg" alt="Bild 1">
-                    <a href="https://example.com" class="info-button">Mehr erfahren</a>
-                </div>
-            </div>
-            <div class="carousel-slide">
-                <div class="hover-shadow">
-                    <img src="https://i.imgur.com/R7ZewNI.jpg" alt="Bild 2">
-                    <a href="https://example.com" class="info-button">Mehr erfahren</a>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-controls">
-            <div class="dot" data-index="0"></div>
-            <div class="dot" data-index="1"></div>
-        </div>
-        <div class="arrow left"></div>
-        <div class="arrow right"></div>
+    <!-- Trennlinie und Leerzeichen -->
+    <hr>
+    <div class="section">
+        <p>Handverlesen - für Dich.<br>Nutze Deine Chance.</p>
     </div>
 
-    <script>
-        // Skript für das obere Karussell
-        let index = 0;
-        const slides = document.querySelector('.slides');
-        const dots = document.querySelectorAll('.dot');
-        const leftArrow = document.querySelector('.arrow.left');
-        const rightArrow = document.querySelector('.arrow.right');
-        let slideInterval;
+    <!-- Karussell und Statisches Bild nebeneinander -->
+    <div class="section" style="display: flex; justify-content: space-between;">
+        <!-- Linkes Karussell -->
+        <div class="carousel-container">
+            <div class="carousel-wrapper">
+                <div class="carousel-slide">
+                    <div class="hover-shadow">
+                        <img src="https://i.imgur.com/e2Z3EkO.jpg" alt="Bild 1">
+                        <a href="https://example.com" class="info-button">Mehr erfahren</a>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <div class="hover-shadow">
+                        <img src="https://i.imgur.com/R7ZewNI.jpg" alt="Bild 2">
+                        <a href="https://example.com" class="info-button">Mehr erfahren</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <div class="dot" data-index="0"></div>
+                <div class="dot" data-index="1"></div>
+            </div>
+            <div class="arrow left"></div>
+            <div class="arrow right"></div>
+        </div>
 
-        function showSlide(n) {
-            if (n >= dots.length) {
-                index = 0;
-            } else if (n < 0) {
-                index = dots.length - 1;
-            } else {
-                index = n;
+        <!-- Rechtes Statisches Bild -->
+        <div class="static-image-container">
+            <img src="https://i.imgur.com/nuHU6iZ.jpg" alt="Statisches Bild" class="static-image">
+            <a href="https://example.com" class="info-button">Mehr erfahren</a>
+        </div>
+    </div>
+
+    <!-- Quiz-Sektion -->
+    <div class="section">
+        <div class="main-container" id="main-container">
+            <div class="container text-container active" id="start-screen">
+                <div class="text-wrapper">
+                    <span class="text-bold">Spare Zeit</span>
+                    <span class="text-normal">und finde was Du suchst.</span>
+                </div>
+                <button class="start-button" id="start-button">Entdeckung starten</button>
+            </div>
+
+            <div class="container hidden" id="categories-screen">
+                <div class="section" id="sport-section">
+                    Sport
+                    <div class="gif-overlay" id="sport-gif"></div>
+                </div>
+                <div class="divider"></div>
+                <div class="section" id="entertainment-section">
+                    Unterhaltung
+                    <div class="gif-overlay" id="entertainment-gif"></div>
+                </div>
+                <div class="divider"></div>
+                <div class="section" id="cooking-section">
+                    Kochen
+                    <div class="gif-overlay" id="cooking-gif"></div>
+                </div>
+                <div class="divider"></div>
+                <div class="section" id="nutrition-section">
+                    Ernährung
+                    <div class="gif-overlay" id="nutrition-gif"></div>
+                </div>
+            </div>
+
+            <div class="container hidden" id="next-step-screen">
+                <div class="section">Das Beste kombiniert</div>
+                <div class="divider"></div>
+                <div class="section">Einzelstücke</div>
+            </div>
+
+            <div class="transition-text" id="transition-text"></div>
+        </div>
+
+        <button class="back-button" id="back-button">Zurück</button>
+
+        <script>
+            const startScreen = document.getElementById('start-screen');
+            const startButton = document.getElementById('start-button');
+            const categoriesScreen = document.getElementById('categories-screen');
+            const nextStepScreen = document.getElementById('next-step-screen');
+            const backButton = document.getElementById('back-button');
+            const transitionText = document.getElementById('transition-text');
+            const mainContainer = document.getElementById('main-container');
+
+            const sportGif = document.getElementById('sport-gif');
+            const entertainmentGif = document.getElementById('entertainment-gif');
+            const cookingGif = document.getElementById('cooking-gif');
+            const nutritionGif = document.getElementById('nutrition-gif');
+
+            let currentScreen = 'start';
+
+            const sportGifUrl = 'https://i.imgur.com/fZy2kEO.gif';
+            const entertainmentGifUrl = 'https://i.imgur.com/42mXNHM.gif';
+            const cookingGifUrl = 'https://i.imgur.com/WJ0O9VX.gif';
+            const nutritionGifUrl = 'https://i.imgur.com/WTGbVLP.gif';
+
+            sportGif.style.backgroundImage = `url(${sportGifUrl})`;
+            entertainmentGif.style.backgroundImage = `url(${entertainmentGifUrl})`;
+            cookingGif.style.backgroundImage = `url(${cookingGifUrl})`;
+            nutritionGif.style.backgroundImage = `url(${nutritionGifUrl})`;
+
+            function showScreen(screenToShow, transitionMessage, showTransition = true) {
+                const activeScreen = document.querySelector('.container.active');
+                if (activeScreen) {
+                    if (showTransition) {
+                        mainContainer.style.backgroundColor = '#ffffff';
+                        activeScreen.classList.remove('active');
+                        setTimeout(() => {
+                            showTransitionText(transitionMessage);
+                            setTimeout(() => {
+                                hideTransitionText();
+                                setTimeout(() => {
+                                    mainContainer.style.backgroundColor = '';
+                                    activeScreen.classList.add('hidden');
+                                    screenToShow.classList.remove('hidden');
+                                    setTimeout(() => {
+                                        screenToShow.classList.add('active');
+                                    }, 50);
+                                }, 500);
+                            }, 1000);
+                        }, 500);
+                    } else {
+                        activeScreen.classList.remove('active');
+                        setTimeout(() => {
+                            activeScreen.classList.add('hidden');
+                            screenToShow.classList.remove('hidden');
+                            setTimeout(() => {
+                                screenToShow.classList.add('active');
+                            }, 50);
+                        }, 500);
+                    }
+                }
             }
-            slides.style.transform = `translateX(-${index * 100}%)`;
-            dots.forEach(dot => dot.classList.remove('active'));
-            dots[index].classList.add('active');
-            leftArrow.style.display = index === 0 ? 'none' : 'flex';
-            rightArrow.style.display = index === dots.length - 1 ? 'none' : 'flex';
-        }
 
-        function nextSlide() {
-    if (index >= dots.length - 1) {
-        index = 0; // Springt zurück zum ersten Bild
-    } else {
-        index++;
-    }
-    showSlide(index);
-}
+            function showTransitionText(message) {
+                transitionText.innerText = message;
+                transitionText.classList.add('active');
+            }
 
+            function hideTransitionText() {
+                transitionText.classList.add('fade-out');
+                setTimeout(() => {
+                    transitionText.classList.remove('active');
+                    transitionText.classList.remove('fade-out');
+                }, 500);
+            }
 
-        function previousSlide() {
-            showSlide(index - 1);
-        }
-
-        function startSlider() {
-            slideInterval = setInterval(nextSlide, 3000);
-        }
-
-        function stopSlider() {
-            clearInterval(slideInterval);
-        }
-
-        dots.forEach((dot, idx) => {
-            dot.addEventListener('click', () => {
-                showSlide(idx);
-                stopSlider();
+            startButton.addEventListener('click', () => {
+                showScreen(categoriesScreen, 'Kategorie wählen');
+                backButton.classList.add('show');
+                currentScreen = 'categories';
             });
-        });
 
-        slides.addEventListener('mouseover', stopSlider);
-        slides.addEventListener('mouseout', startSlider);
-
-        leftArrow.addEventListener('click', previousSlide);
-        rightArrow.addEventListener('click', nextSlide);
-
-        document.addEventListener('visibilitychange', () => {
-            if (document.visibilityState === 'visible') {
-                startSlider();
-            } else {
-                stopSlider();
-            }
-        });
-
-        startSlider();
-        showSlide(index);
-
-        // Skript für das untere Karussell
-        const wrapper = document.querySelector('.carousel-wrapper');
-        const carouselDots = document.querySelectorAll('.dot');
-        const carouselLeftArrow = document.querySelector('.arrow.left');
-        const carouselRightArrow = document.querySelector('.arrow.right');
-        let currentIndex = 0;
-        let autoplayInterval;
-
-        function updateCarousel() {
-            const offset = -currentIndex * 100;
-            wrapper.style.transform = `translateX(${offset}%)`;
-            carouselDots.forEach(dot => dot.classList.remove('active'));
-            carouselDots[currentIndex].classList.add('active');
-            carouselLeftArrow.style.display = currentIndex === 0 ? 'none' : 'flex';
-            carouselRightArrow.style.display = currentIndex === carouselDots.length - 1 ? 'none' : 'flex';
-        }
-
-        function goToSlide(index) {
-            currentIndex = index;
-            updateCarousel();
-        }
-
-        function startAutoplay() {
-            autoplayInterval = setInterval(() => {
-                currentIndex = (currentIndex < carouselDots.length - 1) ? currentIndex + 1 : 0;
-                updateCarousel();
-            }, 3000);
-        }
-
-        function stopAutoplay() {
-            clearInterval(autoplayInterval);
-        }
-
-        carouselDots.forEach(dot => {
-            dot.addEventListener('click', (e) => {
-                const index = parseInt(e.target.dataset.index, 10);
-                goToSlide(index);
+            document.querySelectorAll('#categories-screen .section').forEach(section => {
+                section.addEventListener('click', () => {
+                    showScreen(nextStepScreen, 'Nächster Schritt');
+                    currentScreen = 'nextStep';
+                });
             });
-        });
 
-        document.querySelector('.carousel-container').addEventListener('mouseenter', stopAutoplay);
-        document.querySelector('.carousel-container').addEventListener('mouseleave', startAutoplay);
-
-        carouselLeftArrow.addEventListener('click', () => {
-            if (currentIndex > 0) {
-                goToSlide(currentIndex - 1);
-            }
-        });
-
-        carouselRightArrow.addEventListener('click', () => {
-            if (currentIndex < carouselDots.length - 1) {
-                goToSlide(currentIndex + 1);
-            }
-        });
-
-        startAutoplay();
-        updateCarousel();
-    </script>
+            backButton.addEventListener('click', () => {
+                if (currentScreen === 'categories') {
+                    showScreen(startScreen, '', false);
+                    backButton.classList.remove('show');
+                    currentScreen = 'start';
+                } else if (currentScreen === 'nextStep') {
+                    showScreen(categoriesScreen, '', false);
+                    currentScreen = 'categories';
+                }
+            });
+        </script>
+    </div>
 
 </body>
 </html>
