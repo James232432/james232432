@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Statisches Bild</title>
+    <title>Statische Bilder</title>
     <style>
         body {
             display: flex;
@@ -19,93 +19,14 @@
             overflow: hidden;
         }
 
-        .static-image-container {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
-            max-width: 500px;
-            height: auto;
-            max-height: 90vh;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-        }
-
-        .static-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 15px;
-        }
-
-        @media (max-width: 768px) {
-            .static-image-container {
-                width: 95%;
-                max-width: 100%;
-                max-height: 80vh;
-            }
-        }
-    </style>
-</head>
-<body>
-
-<div class="static-image-container">
-    <img src="https://i.imgur.com/BwstVUp.jpg" alt="Statisches Bild" class="static-image">
-</div>
-
-<script>
-    let touchStartY = 0;
-    
-    document.querySelector('.static-image-container').addEventListener('touchstart', function(event) {
-        touchStartY = event.touches[0].clientY; // Anfangs-Y-Position speichern
-    });
-
-    document.querySelector('.static-image-container').addEventListener('touchmove', function(event) {
-        let touchEndY = event.touches[0].clientY;
-        let touchDifference = touchEndY - touchStartY;
-
-        if (Math.abs(touchDifference) < 0) {
-            event.stopPropagation(); // Wenn der Unterschied klein ist, wird das Scrollen verhindert
-        } else {
-            event.preventDefault(); // Scrollen der Seite erlauben, nicht des Containers
-        }
-    });
-</script>
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Statisches Bild</title>
-    <style>
-        body {
+        .images-container {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #ffffff;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            font-size: 100%;
-            text-align: center;
-            padding: 0;
-            overflow: hidden;
+            gap: 10px; /* Abstand zwischen den Bildern */
         }
 
         .static-image-container {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
-            max-width: 500px;
-            height: auto;
-            max-height: 90vh;
+            width: 200px; /* Kleinere Breite für die Bilder */
+            height: 150px; /* Kleinere Höhe für die Bilder */
             border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             overflow: hidden;
@@ -119,196 +40,28 @@
         }
 
         @media (max-width: 768px) {
-            .static-image-container {
-                width: 95%;
-                max-width: 100%;
-                max-height: 80vh;
+            .images-container {
+                flex-direction: column; /* Bilder untereinander auf kleinen Bildschirmen */
             }
         }
     </style>
 </head>
 <body>
 
-<div class="static-image-container">
-    <img src="https://i.imgur.com/fyklL1G.jpg" alt="Statisches Bild" class="static-image">
+<div class="images-container">
+    <div class="static-image-container">
+        <img src="https://i.imgur.com/6o57Pd2.jpg" alt="Statisches Bild 1" class="static-image">
+    </div>
+    <div class="static-image-container">
+        <img src="https://i.imgur.com/6o57Pd2.jpg" alt="Statisches Bild 2" class="static-image">
+    </div>
+    <div class="static-image-container">
+        <img src="https://i.imgur.com/6o57Pd2.jpg" alt="Statisches Bild 3" class="static-image">
+    </div>
+    <div class="static-image-container">
+        <img src="https://i.imgur.com/6o57Pd2.jpg" alt="Statisches Bild 4" class="static-image">
+    </div>
 </div>
-
-<script>
-    let touchStartY = 0;
-    
-    document.querySelector('.static-image-container').addEventListener('touchstart', function(event) {
-        touchStartY = event.touches[0].clientY; // Anfangs-Y-Position speichern
-    });
-
-    document.querySelector('.static-image-container').addEventListener('touchmove', function(event) {
-        let touchEndY = event.touches[0].clientY;
-        let touchDifference = touchEndY - touchStartY;
-
-        if (Math.abs(touchDifference) < 0) {
-            event.stopPropagation(); // Wenn der Unterschied klein ist, wird das Scrollen verhindert
-        } else {
-            event.preventDefault(); // Scrollen der Seite erlauben, nicht des Containers
-        }
-    });
-</script>
-
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Statisches Bild</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #ffffff;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            font-size: 100%;
-            text-align: center;
-            padding: 0;
-            overflow: hidden;
-        }
-
-        .static-image-container {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
-            max-width: 500px;
-            height: auto;
-            max-height: 90vh;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-        }
-
-        .static-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 15px;
-        }
-
-        @media (max-width: 768px) {
-            .static-image-container {
-                width: 95%;
-                max-width: 100%;
-                max-height: 80vh;
-            }
-        }
-    </style>
-</head>
-<body>
-
-<div class="static-image-container">
-    <img src="https://i.imgur.com/vGEqSRl.jpg" alt="Statisches Bild" class="static-image">
-</div>
-
-<script>
-    let touchStartY = 0;
-    
-    document.querySelector('.static-image-container').addEventListener('touchstart', function(event) {
-        touchStartY = event.touches[0].clientY; // Anfangs-Y-Position speichern
-    });
-
-    document.querySelector('.static-image-container').addEventListener('touchmove', function(event) {
-        let touchEndY = event.touches[0].clientY;
-        let touchDifference = touchEndY - touchStartY;
-
-        if (Math.abs(touchDifference) < 0) {
-            event.stopPropagation(); // Wenn der Unterschied klein ist, wird das Scrollen verhindert
-        } else {
-            event.preventDefault(); // Scrollen der Seite erlauben, nicht des Containers
-        }
-    });
-</script>
-
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Statisches Bild</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #ffffff;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            font-size: 100%;
-            text-align: center;
-            padding: 0;
-            overflow: hidden;
-        }
-
-        .static-image-container {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
-            max-width: 500px;
-            height: auto;
-            max-height: 90vh;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-        }
-
-        .static-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 15px;
-        }
-
-        @media (max-width: 768px) {
-            .static-image-container {
-                width: 95%;
-                max-width: 100%;
-                max-height: 80vh;
-            }
-        }
-    </style>
-</head>
-<body>
-
-<div class="static-image-container">
-    <img src="https://i.imgur.com/6o57Pd2.jpg" alt="Statisches Bild" class="static-image">
-</div>
-
-<script>
-    let touchStartY = 0;
-    
-    document.querySelector('.static-image-container').addEventListener('touchstart', function(event) {
-        touchStartY = event.touches[0].clientY; // Anfangs-Y-Position speichern
-    });
-
-    document.querySelector('.static-image-container').addEventListener('touchmove', function(event) {
-        let touchEndY = event.touches[0].clientY;
-        let touchDifference = touchEndY - touchStartY;
-
-        if (Math.abs(touchDifference) < 0) {
-            event.stopPropagation(); // Wenn der Unterschied klein ist, wird das Scrollen verhindert
-        } else {
-            event.preventDefault(); // Scrollen der Seite erlauben, nicht des Containers
-        }
-    });
-</script>
 
 </body>
 </html>
