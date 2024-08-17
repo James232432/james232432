@@ -1,308 +1,473 @@
 <!DOCTYPE html>
 <html lang="de">
-
-<!DOCTYPE html>
-<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Classic Slider</title>
+    <title>Scrollbare Website</title>
     <style>
-        body {
+        /* Allgemeine Stile */
+        body, html {
             margin: 0;
-            overflow: hidden; /* Verhindert das Scrollen */
-            touch-action: none; /* Verhindert das Scrollen durch Touch-Eingaben */
-            width: 100vw; /* Setzt die Breite des Körpers auf die gesamte Breite des Viewports */
-            height: 100vh; /* Setzt die Höhe des Körpers auf die gesamte Höhe des Viewports */
-        }
-        .slider {
-            position: fixed; /* Fixiert den Slider im Viewport */
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100vw; /* Breite des Sliders auf 100% des Viewports setzen */
-            height: 100vh; /* Höhe des Sliders auf 100% des Viewports setzen */
-            max-width: 100%; /* Maximale Breite des Sliders entfernen */
-            max-height: 100%; /* Maximale Höhe des Sliders entfernen */
-            overflow: hidden;
-            margin: 0;
-        }
-        .slides {
-            display: flex;
-            width: 100%; /* Breite der Slides für 3 Bilder */
+            padding: 0;
             height: 100%;
-            transition: transform 0.6s ease-in-out;
+            font-family: Arial, sans-serif;
         }
-        .slide {
-            width: 100%;
-            height: 100%;
-            flex: 1 0 100%;
-            position: relative; /* Ermöglicht die absolute Positionierung von Links */
-        }
-        .slide img {
-            width: 100%; /* Breite der Bilder auf 100% setzen */
-            height: 100%; /* Höhe der Bilder auf 100% setzen */
-            object-fit: cover; /* Bildfüllung */
-        }
-        .slide a {
-            display: block;
-            width: 100%;
-            height: 100%;
-            position: absolute; /* Stellt sicher, dass der Link über das Bild gelegt wird */
-            top: 0;
-            left: 0;
-        }
-        .dots {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
+
+        /* Hauptcontainer */
+        .main-container {
             display: flex;
-            justify-content: center;
-            gap: 5px;
-        }
-        .dot {
-            width: 10px;
-            height: 10px;
-            background-color: #bbb;
-            border-radius: 50%;
-            display: inline-block;
-            transition: background-color 0.3s ease;
-            cursor: pointer; /* Zeigt einen Zeiger-Cursor beim Hover an */
-        }
-        .dot.active {
-            background-color: #717171;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden; /* Horizontales Scrollen verhindern */
         }
 
-        /* CSS für die Pfeile */
-        .arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 30px;
-            height: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            background-color: transparent; /* Hintergrund transparent, damit der Kreis unsichtbar ist */
+        /* Abschnitt-Container */
+        .section {
+            flex: 1;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border-bottom: 1px solid #ccc;
+            box-sizing: border-box;
         }
 
-        .arrow.left {
-            left: 10px;
+        /* Beispiel-Stil für unterschiedliche Abschnitte */
+        .section:nth-child(odd) {
+            background-color: #e0e0e0;
         }
 
-        .arrow.right {
-            right: 10px;
-        }
-
-        .arrow:before {
-            content: '';
-            display: block;
-            width: 10px;
-            height: 10px;
-            border-left: 2px solid #2d2d30;
-            border-bottom: 2px solid #2d2d30;
-        }
-
-        .arrow.left:before {
-            transform: rotate(45deg);
-        }
-
-        .arrow.right:before {
-            transform: rotate(-135deg);
-        }
-
-        .slider:hover .arrow {
-            opacity: 1;
-        }
-
-        /* Media Query für Tablets und größere Bildschirme */
-        @media (min-width: 769px) {
-            .slider {
-                width: 100vw; /* Begrenze die Breite auf 50% des Viewports */
-                height: 100vh; /* Begrenze die Höhe auf 50% des Viewports */
-            }
-        }
-
-        /* Media Query für Smartphones */
-        @media (max-width: 768px) {
-            .slider {
-                width: 100vw; /* Begrenze die Breite auf 90% des Viewports */
-                height: 100vh; /* Erhöhe die Höhe auf 120% des Viewports */
-            }
+        /* Footer */
+        .footer {
+            padding: 10px;
+            text-align: center;
+            background-color: #333;
+            color: white;
         }
     </style>
 </head>
 <body>
 
-<div class="slider">
-    <div class="slides">
-        <div class="slide">
-            <a href="https://www.bolibro.com/am-beliebtesten" target="_blank"> <!-- Link zum ersten Bild -->
-                <img src="https://i.imgur.com/OhY5hBy.jpg" alt="Bild 1">
-            </a>
-        </div>
-        <div class="slide">
-            <a href="https://www.bolibro.com/angebote" target="_blank"> <!-- Link zum zweiten Bild -->
-                <img src="https://i.imgur.com/xca3TGg.jpg" alt="Bild 2">
-            </a>
-        </div>
-        <div class="slide">
-            <a href="https://www.bolibro.com/bibliothek" target="_blank"> <!-- Link zum dritten Bild -->
-                <img src="https://i.imgur.com/bRFkewI.jpg" alt="Bild 3">
-            </a>
-        </div>
+<div class="main-container">
+    <!-- Hier kommt dein Inhalt -->
+    <div class="section">
+        <!-- Abschnitt 1 -->
+        <p>
+
+            <!DOCTYPE html>
+            <html lang="de">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Classic Slider</title>
+                <style>
+                    body {
+                        margin: 0;
+                        overflow: hidden; /* Verhindert das Scrollen */
+                        touch-action: none; /* Verhindert das Scrollen durch Touch-Eingaben */
+                        width: 100vw; /* Setzt die Breite des Körpers auf die gesamte Breite des Viewports */
+                        height: 100vh; /* Setzt die Höhe des Körpers auf die gesamte Höhe des Viewports */
+                    }
+                    .slider {
+                        position: fixed; /* Fixiert den Slider im Viewport */
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        width: 100vw; /* Breite des Sliders auf 100% des Viewports setzen */
+                        height: 100vh; /* Höhe des Sliders auf 100% des Viewports setzen */
+                        max-width: 100%; /* Maximale Breite des Sliders entfernen */
+                        max-height: 100%; /* Maximale Höhe des Sliders entfernen */
+                        overflow: hidden;
+                        margin: 0;
+                    }
+                    .slides {
+                        display: flex;
+                        width: 100%; /* Breite der Slides für 3 Bilder */
+                        height: 100%;
+                        transition: transform 0.6s ease-in-out;
+                    }
+                    .slide {
+                        width: 100%;
+                        height: 100%;
+                        flex: 1 0 100%;
+                        position: relative; /* Ermöglicht die absolute Positionierung von Links */
+                    }
+                    .slide img {
+                        width: 100%; /* Breite der Bilder auf 100% setzen */
+                        height: 100%; /* Höhe der Bilder auf 100% setzen */
+                        object-fit: cover; /* Bildfüllung */
+                    }
+                    .slide a {
+                        display: block;
+                        width: 100%;
+                        height: 100%;
+                        position: absolute; /* Stellt sicher, dass der Link über das Bild gelegt wird */
+                        top: 0;
+                        left: 0;
+                    }
+                    .dots {
+                        position: absolute;
+                        bottom: 10px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        display: flex;
+                        justify-content: center;
+                        gap: 5px;
+                    }
+                    .dot {
+                        width: 10px;
+                        height: 10px;
+                        background-color: #bbb;
+                        border-radius: 50%;
+                        display: inline-block;
+                        transition: background-color 0.3s ease;
+                        cursor: pointer; /* Zeigt einen Zeiger-Cursor beim Hover an */
+                    }
+                    .dot.active {
+                        background-color: #717171;
+                    }
+            
+                    /* CSS für die Pfeile */
+                    .arrow {
+                        position: absolute;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        width: 30px;
+                        height: 30px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        cursor: pointer;
+                        opacity: 0;
+                        transition: opacity 0.3s ease;
+                        background-color: transparent; /* Hintergrund transparent, damit der Kreis unsichtbar ist */
+                    }
+            
+                    .arrow.left {
+                        left: 10px;
+                    }
+            
+                    .arrow.right {
+                        right: 10px;
+                    }
+            
+                    .arrow:before {
+                        content: '';
+                        display: block;
+                        width: 10px;
+                        height: 10px;
+                        border-left: 2px solid #2d2d30;
+                        border-bottom: 2px solid #2d2d30;
+                    }
+            
+                    .arrow.left:before {
+                        transform: rotate(45deg);
+                    }
+            
+                    .arrow.right:before {
+                        transform: rotate(-135deg);
+                    }
+            
+                    .slider:hover .arrow {
+                        opacity: 1;
+                    }
+            
+                    /* Media Query für Tablets und größere Bildschirme */
+                    @media (min-width: 769px) {
+                        .slider {
+                            width: 100vw; /* Begrenze die Breite auf 50% des Viewports */
+                            height: 100vh; /* Begrenze die Höhe auf 50% des Viewports */
+                        }
+                    }
+            
+                    /* Media Query für Smartphones */
+                    @media (max-width: 768px) {
+                        .slider {
+                            width: 100vw; /* Begrenze die Breite auf 90% des Viewports */
+                            height: 100vh; /* Erhöhe die Höhe auf 120% des Viewports */
+                        }
+                    }
+                </style>
+            </head>
+            <body>
+            
+            <div class="slider">
+                <div class="slides">
+                    <div class="slide">
+                        <a href="https://www.bolibro.com/am-beliebtesten" target="_blank"> <!-- Link zum ersten Bild -->
+                            <img src="https://i.imgur.com/OhY5hBy.jpg" alt="Bild 1">
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="https://www.bolibro.com/angebote" target="_blank"> <!-- Link zum zweiten Bild -->
+                            <img src="https://i.imgur.com/xca3TGg.jpg" alt="Bild 2">
+                        </a>
+                    </div>
+                    <div class="slide">
+                        <a href="https://www.bolibro.com/bibliothek" target="_blank"> <!-- Link zum dritten Bild -->
+                            <img src="https://i.imgur.com/bRFkewI.jpg" alt="Bild 3">
+                        </a>
+                    </div>
+                </div>
+                <div class="dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+                <div class="arrow left"></div>
+                <div class="arrow right"></div>
+            </div>
+            
+            <script>
+                let index = 0;
+                const slides = document.querySelector('.slides');
+                const dots = document.querySelectorAll('.dot');
+                const leftArrow = document.querySelector('.arrow.left');
+                const rightArrow = document.querySelector('.arrow.right');
+                let slideInterval;
+            
+                function showSlide(n) {
+                    if (n >= dots.length) {
+                        index = 0;
+                    } else if (n < 0) {
+                        index = dots.length - 1;
+                    } else {
+                        index = n;
+                    }
+                    slides.style.transform = `translateX(-${index * 100}%)`;
+                    dots.forEach(dot => dot.classList.remove('active'));
+                    dots[index].classList.add('active');
+            
+                    // Pfeile anzeigen/verstecken
+                    leftArrow.style.display = index === 0 ? 'none' : 'flex';
+                    rightArrow.style.display = index === dots.length - 1 ? 'none' : 'flex';
+                }
+            
+                function nextSlide() {
+                    showSlide(index + 1);
+                }
+            
+                function previousSlide() {
+                    showSlide(index - 1);
+                }
+            
+                function startSlider() {
+                    slideInterval = setInterval(nextSlide, 3000); // Ändert das Bild alle 3 Sekunden
+                }
+            
+                function stopSlider() {
+                    clearInterval(slideInterval);
+                }
+            
+                document.querySelectorAll('.dot').forEach((dot, idx) => {
+                    dot.addEventListener('click', () => {
+                        showSlide(idx);
+                        stopSlider(); // Stoppt das automatische Wechseln, wenn ein Punkt geklickt wird
+                    });
+                });
+            
+                slides.addEventListener('mouseover', stopSlider);
+                slides.addEventListener('mouseout', startSlider);
+            
+                // Klick-Event für den linken Pfeil
+                leftArrow.addEventListener('click', previousSlide);
+            
+                // Klick-Event für den rechten Pfeil
+                rightArrow.addEventListener('click', nextSlide);
+            
+                // Neustarten des Sliders, wenn der Benutzer zur Seite zurückkehrt
+                document.addEventListener('visibilitychange', () => {
+                    if (document.visibilityState === 'visible') {
+                        startSlider();
+                    } else {
+                        stopSlider();
+                    }
+                });
+            
+                // Startet den Slider beim Laden der Seite
+                startSlider();
+            
+                // Initiales Setup des Karussells
+                showSlide(index);
+            </script>
+            
+            </body>
+            </html>
+            
+
+        </p>
     </div>
-    <div class="dots">
-        <span class="dot active"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
+    
+    <div class="section">
+        <!-- Abschnitt 2 -->
+        <p><!DOCTYPE html>
+            <html lang="de">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Statisches Bild</title>
+                <style>
+                    body {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 100vh;
+                        margin: 0;
+                        background-color: #ffffff;
+                        font-family: 'Helvetica Neue', Arial, sans-serif;
+                        font-size: 100%;
+                        text-align: center;
+                        padding: 0;
+                        overflow: hidden;
+                    }
+            
+                    .static-image-container {
+                        position: fixed;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        width: 90%;
+                        max-width: 500px;
+                        height: auto;
+                        max-height: 90vh;
+                        border-radius: 15px;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+                        overflow: hidden;
+                    }
+            
+                    .static-image {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: 15px;
+                    }
+            
+                    @media (max-width: 768px) {
+                        .static-image-container {
+                            width: 95%;
+                            max-width: 100%;
+                            max-height: 80vh;
+                        }
+                    }
+                </style>
+            </head>
+            <body>
+            
+            <div class="static-image-container">
+                <img src="https://i.imgur.com/BwstVUp.jpg" alt="Statisches Bild" class="static-image">
+            </div>
+            
+            <script>
+                let touchStartY = 0;
+                
+                document.querySelector('.static-image-container').addEventListener('touchstart', function(event) {
+                    touchStartY = event.touches[0].clientY; // Anfangs-Y-Position speichern
+                });
+            
+                document.querySelector('.static-image-container').addEventListener('touchmove', function(event) {
+                    let touchEndY = event.touches[0].clientY;
+                    let touchDifference = touchEndY - touchStartY;
+            
+                    if (Math.abs(touchDifference) < 0) {
+                        event.stopPropagation(); // Wenn der Unterschied klein ist, wird das Scrollen verhindert
+                    } else {
+                        event.preventDefault(); // Scrollen der Seite erlauben, nicht des Containers
+                    }
+                });
+            </script>
+            
+            </body>
+            </html>
+            </p>
     </div>
-    <div class="arrow left"></div>
-    <div class="arrow right"></div>
+
+    <div class="section">
+        <!-- Abschnitt 3 -->
+        <p><!DOCTYPE html>
+            <html lang="de">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Statisches Bild</title>
+                <style>
+                    body {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 100vh;
+                        margin: 0;
+                        background-color: #ffffff;
+                        font-family: 'Helvetica Neue', Arial, sans-serif;
+                        font-size: 100%;
+                        text-align: center;
+                        padding: 0;
+                        overflow: hidden;
+                    }
+            
+                    .static-image-container {
+                        position: fixed;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        width: 90%;
+                        max-width: 500px;
+                        height: auto;
+                        max-height: 90vh;
+                        border-radius: 15px;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+                        overflow: hidden;
+                    }
+            
+                    .static-image {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: 15px;
+                    }
+            
+                    @media (max-width: 768px) {
+                        .static-image-container {
+                            width: 95%;
+                            max-width: 100%;
+                            max-height: 80vh;
+                        }
+                    }
+                </style>
+            </head>
+            <body>
+            
+            <div class="static-image-container">
+                <img src="https://i.imgur.com/BwstVUp.jpg" alt="Statisches Bild" class="static-image">
+            </div>
+            
+            <script>
+                let touchStartY = 0;
+                
+                document.querySelector('.static-image-container').addEventListener('touchstart', function(event) {
+                    touchStartY = event.touches[0].clientY; // Anfangs-Y-Position speichern
+                });
+            
+                document.querySelector('.static-image-container').addEventListener('touchmove', function(event) {
+                    let touchEndY = event.touches[0].clientY;
+                    let touchDifference = touchEndY - touchStartY;
+            
+                    if (Math.abs(touchDifference) < 0) {
+                        event.stopPropagation(); // Wenn der Unterschied klein ist, wird das Scrollen verhindert
+                    } else {
+                        event.preventDefault(); // Scrollen der Seite erlauben, nicht des Containers
+                    }
+                });
+            </script>
+            
+            </body>
+            </html>
+            </p>
+    </div>
+
+    <!-- Füge weitere Abschnitte hinzu wie benötigt -->
 </div>
 
-<script>
-    let index = 0;
-    const slides = document.querySelector('.slides');
-    const dots = document.querySelectorAll('.dot');
-    const leftArrow = document.querySelector('.arrow.left');
-    const rightArrow = document.querySelector('.arrow.right');
-    let slideInterval;
-
-    function showSlide(n) {
-        if (n >= dots.length) {
-            index = 0;
-        } else if (n < 0) {
-            index = dots.length - 1;
-        } else {
-            index = n;
-        }
-        slides.style.transform = `translateX(-${index * 100}%)`;
-        dots.forEach(dot => dot.classList.remove('active'));
-        dots[index].classList.add('active');
-
-        // Pfeile anzeigen/verstecken
-        leftArrow.style.display = index === 0 ? 'none' : 'flex';
-        rightArrow.style.display = index === dots.length - 1 ? 'none' : 'flex';
-    }
-
-    function nextSlide() {
-        showSlide(index + 1);
-    }
-
-    function previousSlide() {
-        showSlide(index - 1);
-    }
-
-    function startSlider() {
-        slideInterval = setInterval(nextSlide, 3000); // Ändert das Bild alle 3 Sekunden
-    }
-
-    function stopSlider() {
-        clearInterval(slideInterval);
-    }
-
-    document.querySelectorAll('.dot').forEach((dot, idx) => {
-        dot.addEventListener('click', () => {
-            showSlide(idx);
-            stopSlider(); // Stoppt das automatische Wechseln, wenn ein Punkt geklickt wird
-        });
-    });
-
-    slides.addEventListener('mouseover', stopSlider);
-    slides.addEventListener('mouseout', startSlider);
-
-    // Klick-Event für den linken Pfeil
-    leftArrow.addEventListener('click', previousSlide);
-
-    // Klick-Event für den rechten Pfeil
-    rightArrow.addEventListener('click', nextSlide);
-
-    // Neustarten des Sliders, wenn der Benutzer zur Seite zurückkehrt
-    document.addEventListener('visibilitychange', () => {
-        if (document.visibilityState === 'visible') {
-            startSlider();
-        } else {
-            stopSlider();
-        }
-    });
-
-    // Startet den Slider beim Laden der Seite
-    startSlider();
-
-    // Initiales Setup des Karussells
-    showSlide(index);
-</script>
-
-</body>
-</html>
-
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Statische Bilder</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #ffffff;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            font-size: 100%;
-            text-align: center;
-            padding: 0;
-            overflow: hidden;
-        }
-
-        .images-container {
-            display: flex;
-            gap: 10px; /* Abstand zwischen den Bildern */
-        }
-
-        .static-image-container {
-            width: 200px; /* Kleinere Breite für die Bilder */
-            height: 150px; /* Kleinere Höhe für die Bilder */
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-        }
-
-        .static-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 15px;
-        }
-
-        @media (max-width: 768px) {
-            .images-container {
-                flex-direction: column; /* Bilder untereinander auf kleinen Bildschirmen */
-            }
-        }
-    </style>
-</head>
-<body>
-
-<div class="images-container">
-    <div class="static-image-container">
-        <img src="https://i.imgur.com/6o57Pd2.jpg" alt="Statisches Bild 1" class="static-image">
-    </div>
-    <div class="static-image-container">
-        <img src="https://i.imgur.com/6o57Pd2.jpg" alt="Statisches Bild 2" class="static-image">
-    </div>
-    <div class="static-image-container">
-        <img src="https://i.imgur.com/6o57Pd2.jpg" alt="Statisches Bild 3" class="static-image">
-    </div>
-    <div class="static-image-container">
-        <img src="https://i.imgur.com/6o57Pd2.jpg" alt="Statisches Bild 4" class="static-image">
-    </div>
+<div class="footer">
+    <!-- Footer-Inhalt -->
+    <p>Footer-Inhalt hier</p>
 </div>
 
 </body>
