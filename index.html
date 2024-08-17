@@ -1,499 +1,216 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Willkommen bei Bolibro</title>
+    <meta name="description" content="Ein moderner Webshop mit responsivem Design und umfassenden Funktionen.">
+    <title>Mein Webshop</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
+        /* Eigene CSS-Stile */
         body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            line-height: 1.6;
+            font-family: 'Arial', sans-serif;
         }
 
-        .navbar {
-            width: 100%;
-            background-color: #2d2d2d;
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+        .product-card img {
+            transition: transform 0.3s ease;
         }
 
-        .navbar img {
-            height: 50px;
+        .product-card img:hover {
+            transform: scale(1.1);
         }
 
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 18px;
+        .product-card {
+            transition: box-shadow 0.3s ease;
         }
 
-        .navbar a:hover {
-            color: #0071e3;
+        .product-card:hover {
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
         }
 
-        .content {
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section {
-            margin-bottom: 50px;
-            text-align: center;
-        }
-
-        .section img.responsive {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-
-        hr {
-            margin: 50px 0;
-            border: none;
-            border-top: 1px solid #ccc;
-        }
-
-        .row {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-        }
-
-        .column {
-            flex: 1;
-            margin: 10px;
-            min-width: 300px;
-            text-align: center;
-        }
-
-        .static-image-container {
-            width: 100%;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .static-image-container img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        .carousel-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin: 0 auto;
-            overflow: hidden;
-            border-radius: 15px;
-        }
-
-        .carousel-wrapper {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .carousel-slide {
-            min-width: 100%;
-            box-sizing: border-box;
-        }
-
-        .carousel-slide img {
-            width: 100%;
-            height: auto;
-            border-radius: 15px;
-        }
-
-        .info-button {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 10px 20px;
-            border-radius: 25px;
-            border: none;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #2d2d30;
-            color: white;
+        /* Lazy Loading für Bilder */
+        img.lazy {
             opacity: 0;
-            transition: opacity 0.5s ease, transform 0.5s ease, background-color 0.5s ease;
-            font-family: inherit;
-            text-decoration: none;
+            transition: opacity 0.3s ease-in-out;
         }
 
-        .hover-shadow:hover .info-button {
+        img.lazy.loaded {
             opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-
-        .info-button:hover {
-            background-color: #0071e3;
-        }
-
-        .dots {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            justify-content: center;
-            gap: 5px;
-        }
-
-        .dot {
-            width: 10px;
-            height: 10px;
-            background-color: #bbb;
-            border-radius: 50%;
-            display: inline-block;
-            transition: background-color 0.3s ease;
-            cursor: pointer;
-        }
-
-        .dot.active {
-            background-color: #717171;
-        }
-
-        .arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background-color: transparent;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .arrow.left {
-            left: 10px;
-        }
-
-        .arrow.right {
-            right: 10px;
-        }
-
-        .arrow:before {
-            content: '';
-            display: block;
-            width: 10px;
-            height: 10px;
-            border-left: 2px solid white;
-            border-bottom: 2px solid white;
-        }
-
-        .arrow.left:before {
-            transform: rotate(45deg);
-        }
-
-        .arrow.right:before {
-            transform: rotate(-135deg);
-        }
-
-        .carousel-container:hover .arrow {
-            opacity: 1;
-        }
-
-        .footer {
-            background-color: #2d2d2d;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-            }
-
-            .navbar img {
-                margin-bottom: 10px;
-            }
-
-            .navbar a {
-                margin: 5px 0;
-            }
-
-            .carousel-container {
-                max-width: 100%;
-            }
-
-            .static-image-container {
-                max-width: 100%;
-            }
-
-            .info-button {
-                font-size: 14px;
-                padding: 8px 16px;
-            }
-
-            .section img {
-                max-width: 100%;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .info-button {
-                font-size: 12px;
-                padding: 6px 12px;
-            }
-
-            .section {
-                padding: 20px 10px;
-            }
         }
     </style>
 </head>
-<body>
 
-    <!-- Navigationsleiste -->
-    <div class="navbar">
-        <img src="https://i.imgur.com/I7qeZqa.png" alt="Logo">
-        <div>
-            <a href="#section1">Startseite</a>
-            <a href="#section2">Über Uns</a>
-            <a href="#section3">Leistungen</a>
-            <a href="#section4">Kontakt</a>
-        </div>
-    </div>
+<body class="bg-gray-100 text-gray-800">
 
-    <!-- Hauptinhalt -->
-    <div class="content">
-        <!-- Begrüßungsbild mit Transition -->
-        <div id="section1" class="section">
-            <h1>Willkommen bei Bolibro</h1>
-            <p>Ihre zentrale Anlaufstelle für die besten Bücher und Geschichten.</p>
-            <img src="https://i.imgur.com/zVkSqIt.jpg" alt="Willkommen" class="responsive">
-        </div>
-
-        <!-- Klassisches Karussell -->
-        <div id="section2" class="section">
-            <h2>Über Uns</h2>
-            <div class="carousel-container">
-                <div class="carousel-wrapper">
-                    <div class="carousel-slide">
-                        <a href="https://www.bolibro.com/am-beliebtesten" target="_blank">
-                            <img src="https://i.imgur.com/OhY5hBy.jpg" alt="Bild 1">
-                        </a>
-                    </div>
-                    <div class="carousel-slide">
-                        <a href="https://www.bolibro.com/angebote" target="_blank">
-                            <img src="https://i.imgur.com/xca3TGg.jpg" alt="Bild 2">
-                        </a>
-                    </div>
-                    <div class="carousel-slide">
-                        <a href="https://www.bolibro.com/bibliothek" target="_blank">
-                            <img src="https://i.imgur.com/bRFkewI.jpg" alt="Bild 3">
-                        </a>
-                    </div>
-                </div>
-                <div class="dots">
-                    <span class="dot active"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                </div>
-                <div class="arrow left"></div>
-                <div class="arrow right"></div>
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto p-4 flex justify-between items-center">
+            <h1 class="text-3xl font-bold">Mein Webshop</h1>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a href="#home" class="hover:text-blue-500">Home</a></li>
+                    <li><a href="#products" class="hover:text-blue-500">Produkte</a></li>
+                    <li><a href="#about" class="hover:text-blue-500">Über uns</a></li>
+                    <li><a href="#contact" class="hover:text-blue-500">Kontakt</a></li>
+                </ul>
+            </nav>
+            <div>
+                <a href="#cart" class="hover:text-blue-500">Warenkorb (0)</a>
             </div>
         </div>
+    </header>
 
-        <!-- 4 Statische Bilder nebeneinander -->
-        <div id="section3" class="section row">
-            <h2>Unsere Leistungen</h2>
-            <div class="column">
-                <div class="static-image-container">
-                    <img src="https://i.imgur.com/BwstVUp.jpg" alt="Statisches Bild" class="static-image">
+    <!-- Hero Section -->
+    <section id="home" class="bg-blue-500 text-white py-20">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-4">Willkommen in unserem Webshop</h2>
+            <p class="text-lg mb-6">Entdecken Sie die besten Produkte zu den besten Preisen!</p>
+            <a href="#products" class="bg-white text-blue-500 px-6 py-3 rounded">Jetzt shoppen</a>
+        </div>
+    </section>
+
+    <!-- Produktübersicht -->
+    <section id="products" class="py-16">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold mb-8 text-center">Unsere Produkte</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Einzelnes Produkt -->
+                <div class="bg-white p-4 rounded shadow-md product-card">
+                    <img src="product1.jpg" alt="Produkt 1" class="w-full h-48 object-cover mb-4 lazy" data-src="product1.jpg">
+                    <h3 class="text-xl font-bold mb-2">Produkt 1</h3>
+                    <p class="text-gray-600 mb-4">Eine kurze Beschreibung des Produkts.</p>
+                    <p class="text-lg font-bold mb-4">€29,99</p>
+                    <button class="bg-blue-500 text-white px-4 py-2 rounded add-to-cart" data-product-id="1">In den Warenkorb</button>
                 </div>
-            </div>
-            <div class="column">
-                <div class="static-image-container">
-                    <img src="https://i.imgur.com/BwstVUp.jpg" alt="Statisches Bild" class="static-image">
+
+                <!-- Wiederhole das für mehrere Produkte -->
+                <div class="bg-white p-4 rounded shadow-md product-card">
+                    <img src="product2.jpg" alt="Produkt 2" class="w-full h-48 object-cover mb-4 lazy" data-src="product2.jpg">
+                    <h3 class="text-xl font-bold mb-2">Produkt 2</h3>
+                    <p class="text-gray-600 mb-4">Eine kurze Beschreibung des Produkts.</p>
+                    <p class="text-lg font-bold mb-4">€19,99</p>
+                    <button class="bg-blue-500 text-white px-4 py-2 rounded add-to-cart" data-product-id="2">In den Warenkorb</button>
                 </div>
-            </div>
-            <div class="column">
-                <div class="static-image-container">
-                    <img src="https://i.imgur.com/BwstVUp.jpg" alt="Statisches Bild" class="static-image">
-                </div>
-            </div>
-            <div class="column">
-                <div class="static-image-container">
-                    <img src="https://i.imgur.com/BwstVUp.jpg" alt="Statisches Bild" class="static-image">
-                </div>
+
+                <!-- Weitere Produkte... -->
             </div>
         </div>
+    </section>
 
-        <!-- Trennlinie und Leerzeichen -->
-        <hr>
-        <div class="section">
-            <p>Handverlesen - für Dich.<br>Nutze Deine Chance.</p>
+    <!-- Über uns -->
+    <section id="about" class="py-16 bg-gray-200">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-8">Über uns</h2>
+            <p class="text-lg mb-4">Wir sind ein engagiertes Team, das Ihnen die besten Produkte zu den besten Preisen anbietet. Unsere Mission ist es, Ihnen ein unvergessliches Einkaufserlebnis zu bieten.</p>
+            <p class="text-lg">Kontaktieren Sie uns bei Fragen oder Anregungen!</p>
         </div>
+    </section>
 
-        <!-- Karussell und Statisches Bild nebeneinander -->
-        <div class="section row">
-            <div class="column">
-                <div class="carousel-container">
-                    <div class="carousel-wrapper">
-                        <div class="carousel-slide">
-                            <div class="hover-shadow">
-                                <img src="https://i.imgur.com/e2Z3EkO.jpg" alt="Bild 1">
-                                <a href="https://example.com" class="info-button">Mehr erfahren</a>
-                            </div>
-                        </div>
-                        <div class="carousel-slide">
-                            <div class="hover-shadow">
-                                <img src="https://i.imgur.com/R7ZewNI.jpg" alt="Bild 2">
-                                <a href="https://example.com" class="info-button">Mehr erfahren</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-controls">
-                        <div class="dot" data-index="0"></div>
-                        <div class="dot" data-index="1"></div>
-                    </div>
-                    <div class="arrow left"></div>
-                    <div class="arrow right"></div>
+    <!-- Kontakt -->
+    <section id="contact" class="py-16">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-8">Kontakt</h2>
+            <form class="max-w-lg mx-auto">
+                <div class="mb-4">
+                    <label for="name" class="block text-left mb-2">Name</label>
+                    <input type="text" id="name" class="w-full px-4 py-2 border rounded" required>
                 </div>
-            </div>
-            <div class="column">
-                <div class="static-image-container">
-                    <img src="https://i.imgur.com/nuHU6iZ.jpg" alt="Statisches Bild" class="static-image">
-                    <a href="https://example.com" class="info-button">Mehr erfahren</a>
+                <div class="mb-4">
+                    <label for="email" class="block text-left mb-2">E-Mail</label>
+                    <input type="email" id="email" class="w-full px-4 py-2 border rounded" required>
                 </div>
-            </div>
+                <div class="mb-4">
+                    <label for="message" class="block text-left mb-2">Nachricht</label>
+                    <textarea id="message" class="w-full px-4 py-2 border rounded" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="bg-blue-500 text-white px-6 py-2 rounded">Nachricht senden</button>
+            </form>
         </div>
+    </section>
 
-        <!-- Quiz-Sektion -->
-        <div id="section4" class="section">
-            <h2>Kontakt</h2>
-            <div class="main-container">
-                <div class="container text-container active">
-                    <div class="text-wrapper">
-                        <span class="text-bold">Spare Zeit</span>
-                        <span class="text-normal">und finde was Du suchst.</span>
-                    </div>
-                    <button class="start-button">Entdeckung starten</button>
-                </div>
-
-                <div class="container hidden">
-                    <div class="section">
-                        Sport
-                        <div class="gif-overlay"></div>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="section">
-                        Unterhaltung
-                        <div class="gif-overlay"></div>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="section">
-                        Kochen
-                        <div class="gif-overlay"></div>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="section">
-                        Ernährung
-                        <div class="gif-overlay"></div>
-                    </div>
-                </div>
-
-                <div class="container hidden">
-                    <div class="section">Das Beste kombiniert</div>
-                    <div class="divider"></div>
-                    <div class="section">Einzelstücke</div>
-                </div>
-
-                <div class="transition-text"></div>
+    <!-- Warenkorb -->
+    <section id="cart" class="py-16 bg-gray-200">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-8">Ihr Warenkorb</h2>
+            <div id="cart-items" class="mb-8">
+                <!-- Dynamisch gefüllter Warenkorb -->
+                <p class="text-lg">Ihr Warenkorb ist leer.</p>
             </div>
-
-            <button class="back-button">Zurück</button>
+            <button id="checkout-button" class="bg-green-500 text-white px-6 py-2 rounded">Zur Kasse</button>
         </div>
-    </div>
+    </section>
 
-    <!-- Fußzeile -->
-    <div class="footer">
-        <p>&copy; 2024 Bolibro. Alle Rechte vorbehalten.</p>
-    </div>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 Mein Webshop. Alle Rechte vorbehalten.</p>
+            <p><a href="#privacy" class="underline">Datenschutz</a> | <a href="#terms" class="underline">AGB</a></p>
+        </div>
+    </footer>
 
     <script>
-        // Karussell-Skript
-        let index = 0;
-        const slides = document.querySelector('.carousel-wrapper');
-        const dots = document.querySelectorAll('.dot');
-        const leftArrow = document.querySelector('.arrow.left');
-        const rightArrow = document.querySelector('.arrow.right');
-        let slideInterval;
+        // Lazy Loading für Bilder
+        document.addEventListener("DOMContentLoaded", function () {
+            const lazyImages = document.querySelectorAll("img.lazy");
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove("lazy");
+                        img.classList.add("loaded");
+                        observer.unobserve(img);
+                    }
+                });
+            });
 
-        function showSlide(n) {
-            if (n >= dots.length) {
-                index = 0;
-            } else if (n < 0) {
-                index = dots.length - 1;
-            } else {
-                index = n;
-            }
-            slides.style.transform = `translateX(-${index * 100}%)`;
-            dots.forEach(dot => dot.classList.remove('active'));
-            dots[index].classList.add('active');
-
-            leftArrow.style.display = index === 0 ? 'none' : 'flex';
-            rightArrow.style.display = index === dots.length - 1 ? 'none' : 'flex';
-        }
-
-        function nextSlide() {
-            showSlide(index + 1);
-        }
-
-        function previousSlide() {
-            showSlide(index - 1);
-        }
-
-        function startSlider() {
-            slideInterval = setInterval(nextSlide, 3000);
-        }
-
-        function stopSlider() {
-            clearInterval(slideInterval);
-        }
-
-        document.querySelectorAll('.dot').forEach((dot, idx) => {
-            dot.addEventListener('click', () => {
-                showSlide(idx);
-                stopSlider();
+            lazyImages.forEach(image => {
+                imageObserver.observe(image);
             });
         });
 
-        slides.addEventListener('mouseover', stopSlider);
-        slides.addEventListener('mouseout', startSlider);
+        // Einfaches Warenkorb-System
+        const cart = [];
+        const cartButton = document.querySelectorAll('.add-to-cart');
+        const cartDisplay = document.querySelector('#cart-items');
 
-        leftArrow.addEventListener('click', previousSlide);
-        rightArrow.addEventListener('click', nextSlide);
-
-        document.addEventListener('visibilitychange', () => {
-            if (document.visibilityState === 'visible') {
-                startSlider();
-            } else {
-                stopSlider();
-            }
+        cartButton.forEach(button => {
+            button.addEventListener('click', function () {
+                const productId = this.dataset.productId;
+                addToCart(productId);
+                updateCartDisplay();
+            });
         });
 
-        startSlider();
+        function addToCart(productId) {
+            const productIndex = cart.findIndex(product => product.id === productId);
+            if (productIndex > -1) {
+                cart[productIndex].quantity += 1;
+            } else {
+                cart.push({ id: productId, quantity: 1 });
+            }
+        }
+
+        function updateCartDisplay() {
+            if (cart.length > 0) {
+                let cartHtml = '';
+                cart.forEach(item => {
+                    cartHtml += `<p>Produkt ID: ${item.id} | Menge: ${item.quantity}</p>`;
+                });
+                cartDisplay.innerHTML = cartHtml;
+            } else {
+                cartDisplay.innerHTML = '<p class="text-lg">Ihr Warenkorb ist leer.</p>';
+            }
+        }
+
+        // Checkout Button (nur ein Platzhalter für echte Zahlungsintegration)
+        const checkoutButton = document.querySelector('#checkout-button');
+        checkoutButton.addEventListener('click', function () {
+            alert('Weiter zur Kasse - Zahlungsintegration erforderlich!');
+        });
+
     </script>
 </body>
+
 </html>
