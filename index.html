@@ -62,135 +62,823 @@
 
     <!-- Begrüßungsbild mit Transition -->
     <div class="section" id="home">
-        <div class="image-container">
-            <img src="https://i.imgur.com/zVkSqIt.jpg" alt="Begrüßungsbild">
-        </div>
+        <!DOCTYPE html>
+<html lang="de">
+<head>
 
-        <script>
-            // Funktion, um zu prüfen, ob der Besucher zum ersten Mal die Seite besucht
-            function checkFirstVisit() {
-                if (!localStorage.getItem('firstVisit')) {
-                    // Markiere den Besuch als nicht mehr "erstes Mal"
-                    localStorage.setItem('firstVisit', 'true');
-                    // Zeige das Bild durch Hinzufügen der Klasse 'visible'
-                    document.querySelector('.image-container').classList.add('visible');
-                } else {
-                    // Falls es nicht der erste Besuch ist, das Bild sofort sichtbar machen
-                    document.querySelector('.image-container').classList.add('visible');
-                }
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="2cd875d8-58db-4eff-8d83-8b8b4be5382b" data-blockingmode="auto" type="text/javascript"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bild mit Transition bei erstem Besuch</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Bild wird nach oben geschoben */
+            height: 100vh;
+            margin: 0;
+            background-color: #ffffff;
+            font-family: Arial, sans-serif;
+            overflow: hidden; /* Verhindert das Scrollen */
+            touch-action: none; /* Verhindert das Scrollen durch Touch-Eingaben */
+        }
+
+        .image-container {
+            position: fixed; /* Fixiert das Bild relativ zum Viewport */
+            top: 0; /* Ganz oben */
+            left: 50%; /* Zentriert das Bild horizontal */
+            transform: translateX(-50%); /* Korrigiert horizontale Zentrierung */
+            max-width: 100vw;
+            max-height: 100vh;
+            overflow: hidden;
+            opacity: 0; /* Startzustand unsichtbar */
+            transition: opacity 2s ease; /* Übergang für Opazität über 2 Sekunden */
+        }
+
+        .image-container.visible {
+            opacity: 1; /* Zustand bei Sichtbarkeit */
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        /* Media Query für größere Bildschirme (Tablets, PCs) */
+        @media (min-width: 769px) {
+            .image-container {
+                transform: translateX(-50%); /* Entfernt die Skalierung */
             }
+        }
+    </style>
+</head>
+<body>
 
-            // Aufrufen der Funktion beim Laden der Seite
-            window.onload = checkFirstVisit;
-        </script>
+<div class="image-container">
+    <img src="https://i.imgur.com/zVkSqIt.jpg" alt="Begrüßungsbild">
+</div>
+
+<script>
+    // Funktion, um zu prüfen, ob der Besucher zum ersten Mal die Seite besucht
+    function checkFirstVisit() {
+        if (!localStorage.getItem('firstVisit')) {
+            // Markiere den Besuch als nicht mehr "erstes Mal"
+            localStorage.setItem('firstVisit', 'true');
+            // Zeige das Bild durch Hinzufügen der Klasse 'visible'
+            document.querySelector('.image-container').classList.add('visible');
+        } else {
+            // Falls es nicht der erste Besuch ist, das Bild sofort sichtbar machen
+            document.querySelector('.image-container').classList.add('visible');
+        }
+    }
+
+    // Aufrufen der Funktion beim Laden der Seite
+    window.onload = checkFirstVisit;
+</script>
+
+</body>
+</html>
     </div>
 
     <!-- Klassisches Karussell -->
     <div class="section" id="services">
-        <div class="slider">
-            <div class="slides">
-                <div class="slide">
-                    <a href="https://www.bolibro.com/am-beliebtesten" target="_blank">
-                        <img src="https://i.imgur.com/OhY5hBy.jpg" alt="Bild 1">
-                    </a>
-                </div>
-                <div class="slide">
-                    <a href="https://www.bolibro.com/angebote" target="_blank">
-                        <img src="https://i.imgur.com/xca3TGg.jpg" alt="Bild 2">
-                    </a>
-                </div>
-                <div class="slide">
-                    <a href="https://www.bolibro.com/bibliothek" target="_blank">
-                        <img src="https://i.imgur.com/bRFkewI.jpg" alt="Bild 3">
-                    </a>
-                </div>
-            </div>
-            <div class="dots">
-                <span class="dot active"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-            </div>
-            <div class="arrow left"></div>
-            <div class="arrow right"></div>
+        <!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classic Slider</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden; /* Verhindert das Scrollen */
+            touch-action: none; /* Verhindert das Scrollen durch Touch-Eingaben */
+            width: 100vw; /* Setzt die Breite des Körpers auf die gesamte Breite des Viewports */
+            height: 100vh; /* Setzt die Höhe des Körpers auf die gesamte Höhe des Viewports */
+        }
+        .slider {
+            position: fixed; /* Fixiert den Slider im Viewport */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100vw; /* Breite des Sliders auf 100% des Viewports setzen */
+            height: 100vh; /* Höhe des Sliders auf 100% des Viewports setzen */
+            max-width: 100%; /* Maximale Breite des Sliders entfernen */
+            max-height: 100%; /* Maximale Höhe des Sliders entfernen */
+            overflow: hidden;
+            margin: 0;
+        }
+        .slides {
+            display: flex;
+            width: 100%; /* Breite der Slides für 3 Bilder */
+            height: 100%;
+            transition: transform 0.6s ease-in-out;
+        }
+        .slide {
+            width: 100%;
+            height: 100%;
+            flex: 1 0 100%;
+            position: relative; /* Ermöglicht die absolute Positionierung von Links */
+        }
+        .slide img {
+            width: 100%; /* Breite der Bilder auf 100% setzen */
+            height: 100%; /* Höhe der Bilder auf 100% setzen */
+            object-fit: cover; /* Bildfüllung */
+        }
+        .slide a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute; /* Stellt sicher, dass der Link über das Bild gelegt wird */
+            top: 0;
+            left: 0;
+        }
+        .dots {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+            cursor: pointer; /* Zeigt einen Zeiger-Cursor beim Hover an */
+        }
+        .dot.active {
+            background-color: #717171;
+        }
+
+        /* CSS für die Pfeile */
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            background-color: transparent; /* Hintergrund transparent, damit der Kreis unsichtbar ist */
+        }
+
+        .arrow.left {
+            left: 10px;
+        }
+
+        .arrow.right {
+            right: 10px;
+        }
+
+        .arrow:before {
+            content: '';
+            display: block;
+            width: 10px;
+            height: 10px;
+            border-left: 2px solid #2d2d30;
+            border-bottom: 2px solid #2d2d30;
+        }
+
+        .arrow.left:before {
+            transform: rotate(45deg);
+        }
+
+        .arrow.right:before {
+            transform: rotate(-135deg);
+        }
+
+        .slider:hover .arrow {
+            opacity: 1;
+        }
+
+        /* Media Query für Tablets und größere Bildschirme */
+        @media (min-width: 769px) {
+            .slider {
+                width: 100vw; /* Begrenze die Breite auf 50% des Viewports */
+                height: 100vh; /* Begrenze die Höhe auf 50% des Viewports */
+            }
+        }
+
+        /* Media Query für Smartphones */
+        @media (max-width: 768px) {
+            .slider {
+                width: 100vw; /* Begrenze die Breite auf 90% des Viewports */
+                height: 100vh; /* Erhöhe die Höhe auf 120% des Viewports */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="slider">
+    <div class="slides">
+        <div class="slide">
+            <a href="https://www.bolibro.com/am-beliebtesten" target="_blank"> <!-- Link zum ersten Bild -->
+                <img src="https://i.imgur.com/OhY5hBy.jpg" alt="Bild 1">
+            </a>
         </div>
+        <div class="slide">
+            <a href="https://www.bolibro.com/angebote" target="_blank"> <!-- Link zum zweiten Bild -->
+                <img src="https://i.imgur.com/xca3TGg.jpg" alt="Bild 2">
+            </a>
+        </div>
+        <div class="slide">
+            <a href="https://www.bolibro.com/bibliothek" target="_blank"> <!-- Link zum dritten Bild -->
+                <img src="https://i.imgur.com/bRFkewI.jpg" alt="Bild 3">
+            </a>
+        </div>
+    </div>
+    <div class="dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+    <div class="arrow left"></div>
+    <div class="arrow right"></div>
+</div>
 
-        <script>
-            let index = 0;
-            const slides = document.querySelector('.slides');
-            const dots = document.querySelectorAll('.dot');
-            const leftArrow = document.querySelector('.arrow.left');
-            const rightArrow = document.querySelector('.arrow.right');
-            let slideInterval;
+<script>
+    let index = 0;
+    const slides = document.querySelector('.slides');
+    const dots = document.querySelectorAll('.dot');
+    const leftArrow = document.querySelector('.arrow.left');
+    const rightArrow = document.querySelector('.arrow.right');
+    let slideInterval;
 
-            function showSlide(n) {
-                if (n >= dots.length) {
-                    index = 0;
-                } else if (n < 0) {
-                    index = dots.length - 1;
-                } else {
-                    index = n;
-                }
-                slides.style.transform = `translateX(-${index * 100}%)`;
-                dots.forEach(dot => dot.classList.remove('active'));
-                dots[index].classList.add('active');
-            }
+    function showSlide(n) {
+        if (n >= dots.length) {
+            index = 0;
+        } else if (n < 0) {
+            index = dots.length - 1;
+        } else {
+            index = n;
+        }
+        slides.style.transform = `translateX(-${index * 100}%)`;
+        dots.forEach(dot => dot.classList.remove('active'));
+        dots[index].classList.add('active');
 
-            function nextSlide() {
-                showSlide(index + 1);
-            }
+        // Pfeile anzeigen/verstecken
+        leftArrow.style.display = index === 0 ? 'none' : 'flex';
+        rightArrow.style.display = index === dots.length - 1 ? 'none' : 'flex';
+    }
 
-            function previousSlide() {
-                showSlide(index - 1);
-            }
+    function nextSlide() {
+        showSlide(index + 1);
+    }
 
-            function startSlider() {
-                slideInterval = setInterval(nextSlide, 3000);
-            }
+    function previousSlide() {
+        showSlide(index - 1);
+    }
 
-            function stopSlider() {
-                clearInterval(slideInterval);
-            }
+    function startSlider() {
+        slideInterval = setInterval(nextSlide, 3000); // Ändert das Bild alle 3 Sekunden
+    }
 
-            document.querySelectorAll('.dot').forEach((dot, idx) => {
-                dot.addEventListener('click', () => {
-                    showSlide(idx);
-                    stopSlider();
-                });
-            });
+    function stopSlider() {
+        clearInterval(slideInterval);
+    }
 
-            slides.addEventListener('mouseover', stopSlider);
-            slides.addEventListener('mouseout', startSlider);
+    document.querySelectorAll('.dot').forEach((dot, idx) => {
+        dot.addEventListener('click', () => {
+            showSlide(idx);
+            stopSlider(); // Stoppt das automatische Wechseln, wenn ein Punkt geklickt wird
+        });
+    });
 
-            leftArrow.addEventListener('click', previousSlide);
-            rightArrow.addEventListener('click', nextSlide);
+    slides.addEventListener('mouseover', stopSlider);
+    slides.addEventListener('mouseout', startSlider);
 
-            document.addEventListener('visibilitychange', () => {
-                if (document.visibilityState === 'visible') {
-                    startSlider();
-                } else {
-                    stopSlider();
-                }
-            });
+    // Klick-Event für den linken Pfeil
+    leftArrow.addEventListener('click', previousSlide);
 
+    // Klick-Event für den rechten Pfeil
+    rightArrow.addEventListener('click', nextSlide);
+
+    // Neustarten des Sliders, wenn der Benutzer zur Seite zurückkehrt
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') {
             startSlider();
-            showSlide(index);
-        </script>
+        } else {
+            stopSlider();
+        }
+    });
+
+    // Startet den Slider beim Laden der Seite
+    startSlider();
+
+    // Initiales Setup des Karussells
+    showSlide(index);
+</script>
+
+</body>
+</html>
     </div>
 
     <!-- 4 Statische Bilder nebeneinander -->
     <div class="section" id="about" style="display: flex; justify-content: space-between;">
-        <div class="static-image-container">
-            <img src="https://i.imgur.com/BwstVUp.jpg" alt="Statisches Bild 1" class="static-image">
+        <!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statisches Bild</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffffff;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 100%;
+            text-align: center;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .static-image-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 500px;
+            height: auto;
+            max-height: 90vh;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .static-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .static-image-container {
+                width: 95%;
+                max-width: 100%;
+                max-height: 80vh;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="static-image-container">
+    <img src="https://i.imgur.com/BwstVUp.jpg" alt="Statisches Bild" class="static-image">
+</div>
+
+<script>
+    let touchStartY = 0;
+    
+    document.querySelector('.static-image-container').addEventListener('touchstart', function(event) {
+        touchStartY = event.touches[0].clientY; // Anfangs-Y-Position speichern
+    });
+
+    document.querySelector('.static-image-container').addEventListener('touchmove', function(event) {
+        let touchEndY = event.touches[0].clientY;
+        let touchDifference = touchEndY - touchStartY;
+
+        if (Math.abs(touchDifference) < 0) {
+            event.stopPropagation(); // Wenn der Unterschied klein ist, wird das Scrollen verhindert
+        } else {
+            event.preventDefault(); // Scrollen der Seite erlauben, nicht des Containers
+        }
+    });
+</script>
+
+</body>
+</html>
+    </div>
+
+    <div class="section" style="display: flex; justify-content: space-between;">
+        <!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karussell mit Punkten und Mittigem Button</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffffff;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 100%;
+            text-align: center;
+            padding: 0;
+            overflow: hidden;
+            touch-action: none;
+        }
+
+        .carousel-container {
+            width: 90%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            flex-shrink: 0;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .carousel-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            will-change: transform;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .hover-shadow {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        .hover-shadow img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+            object-fit: cover;
+        }
+
+        .carousel-container:hover {
+            transform: scale(1.03);
+        }
+
+        .carousel-container:hover .hover-shadow {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        .info-button {
+            position: absolute;
+            bottom: 3px;
+            left: 50%;
+            transform: translate(-50%, -50%) translateY(30px);
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #2d2d30;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease, background-color 0.5s ease;
+            font-family: inherit;
+            text-decoration: none;
+        }
+
+        .hover-shadow:hover .info-button {
+            opacity: 1;
+            transform: translate(-50%, -50%) translateY(0);
+        }
+
+        .info-button:hover {
+            background-color: #0071e3;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            bottom: 5px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+
+        .dot.active {
+            background-color: #717171;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .arrow.left {
+            left: 10px;
+        }
+
+        .arrow.right {
+            right: 10px;
+        }
+
+        .arrow:before {
+            content: '';
+            display: block;
+            width: 10px;
+            height: 10px;
+            border-left: 2px solid white;
+            border-bottom: 2px solid white;
+        }
+
+        .arrow.left:before {
+            transform: rotate(45deg);
+        }
+
+        .arrow.right:before {
+            transform: rotate(-135deg);
+        }
+
+        .carousel-container:hover .arrow {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .carousel-container {
+                width: 95%;
+                max-width: 100%;
+                height: auto;
+            }
+
+            .info-button {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .info-button {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="carousel-container">
+    <div class="carousel-wrapper">
+        <div class="carousel-slide">
+            <div class="hover-shadow">
+                <img src="https://i.imgur.com/e2Z3EkO.jpg" alt="Bild 1">
+                <a href="https://example.com" class="info-button">Mehr erfahren</a>
+            </div>
         </div>
-        <div class="static-image-container">
-            <img src="https://i.imgur.com/BwstVUp.jpg" alt="Statisches Bild 2" class="static-image">
+        <div class="carousel-slide">
+            <div class="hover-shadow">
+                <img src="https://i.imgur.com/R7ZewNI.jpg" alt="Bild 2">
+                <a href="https://example.com" class="info-button">Mehr erfahren</a>
+            </div>
         </div>
-        <div class="static-image-container">
-            <img src="https://i.imgur.com/BwstVUp.jpg" alt="Statisches Bild 3" class="static-image">
-        </div>
-        <div class="static-image-container">
-            <img src="https://i.imgur.com/BwstVUp.jpg" alt="Statisches Bild 4" class="static-image">
-        </div>
+    </div>
+    <div class="carousel-controls">
+        <div class="dot" data-index="0"></div>
+        <div class="dot" data-index="1"></div>
+    </div>
+    <div class="arrow left"></div>
+    <div class="arrow right"></div>
+</div>
+
+<script>
+    const wrapper = document.querySelector('.carousel-wrapper');
+    const dots = document.querySelectorAll('.dot');
+    const leftArrow = document.querySelector('.arrow.left');
+    const rightArrow = document.querySelector('.arrow.right');
+    let currentIndex = 0;
+    let autoplayInterval;
+
+    function updateCarousel() {
+        const offset = -currentIndex * 100;
+        wrapper.style.transform = `translateX(${offset}%)`;
+
+        dots.forEach(dot => dot.classList.remove('active'));
+        dots[currentIndex].classList.add('active');
+
+        // Show/hide arrows
+        leftArrow.style.display = currentIndex === 0 ? 'none' : 'flex';
+        rightArrow.style.display = currentIndex === dots.length - 1 ? 'none' : 'flex';
+    }
+
+    function goToSlide(index) {
+        currentIndex = index;
+        updateCarousel();
+    }
+
+    function startAutoplay() {
+        autoplayInterval = setInterval(() => {
+            currentIndex = (currentIndex < dots.length - 1) ? currentIndex + 1 : 0;
+            updateCarousel();
+        }, 3000);
+    }
+
+    function stopAutoplay() {
+        clearInterval(autoplayInterval);
+    }
+
+    dots.forEach(dot => {
+        dot.addEventListener('click', (e) => {
+            const index = parseInt(e.target.dataset.index, 10);
+            goToSlide(index);
+        });
+    });
+
+    document.querySelector('.carousel-container').addEventListener('mouseenter', stopAutoplay);
+    document.querySelector('.carousel-container').addEventListener('mouseleave', startAutoplay);
+
+    // Left arrow click event
+    leftArrow.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            goToSlide(currentIndex - 1);
+        }
+    });
+
+    // Right arrow click event
+    rightArrow.addEventListener('click', () => {
+        if (currentIndex < dots.length - 1) {
+            goToSlide(currentIndex + 1);
+        }
+    });
+
+    // Start autoplay initially
+    startAutoplay();
+
+    // Initial carousel setup
+    updateCarousel();
+</script>
+
+</body>
+</html>
+
+        <!-- Rechtes Statisches Bild -->
+        <!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statisches Bild</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffffff;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 100%;
+            text-align: center;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .static-image-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 500px;
+            height: auto;
+            max-height: 90vh;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .static-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .info-button {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%) translateY(30px);
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #2d2d30;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease, background-color 0.5s ease;
+            font-family: inherit;
+            text-decoration: none;
+        }
+
+        .static-image-container:hover {
+            transform: translate(-50%, -50%) scale(1.03);
+        }
+
+        .static-image-container:hover .info-button {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .info-button:hover {
+            background-color: #0071e3;
+        }
+
+        @media (max-width: 768px) {
+            .static-image-container {
+                width: 95%;
+                max-width: 100%;
+                max-height: 80vh;
+            }
+
+            .info-button {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .info-button {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="static-image-container">
+    <img src="https://i.imgur.com/nuHU6iZ.jpg" alt="Statisches Bild" class="static-image">
+    <a href="https://example.com" class="info-button">Mehr erfahren</a>
+</div>
+
+<script>
+    let touchStartY = 0;
+    
+    document.querySelector('.static-image-container').addEventListener('touchstart', function(event) {
+        touchStartY = event.touches[0].clientY; // Anfangs-Y-Position speichern
+    });
+
+    document.querySelector('.static-image-container').addEventListener('touchmove', function(event) {
+        let touchEndY = event.touches[0].clientY;
+        let touchDifference = touchEndY - touchStartY;
+
+        if (Math.abs(touchDifference) < 0) {
+            event.stopPropagation(); // Wenn der Unterschied klein ist, wird das Scrollen verhindert
+        } else {
+            event.preventDefault(); // Scrollen der Seite erlauben, nicht des Containers
+        }
+    });
+</script>
+
+</body>
+</html>
     </div>
 
     <!-- Trennlinie und Leerzeichen -->
@@ -199,179 +887,368 @@
         <p>Handverlesen - für Dich.<br>Nutze Deine Chance.</p>
     </div>
 
-    <!-- Karussell und Statisches Bild nebeneinander -->
-    <div class="section" style="display: flex; justify-content: space-between;">
-        <!-- Linkes Karussell -->
-        <div class="carousel-container">
-            <div class="carousel-wrapper">
-                <div class="carousel-slide">
-                    <div class="hover-shadow">
-                        <img src="https://i.imgur.com/e2Z3EkO.jpg" alt="Bild 1">
-                        <a href="https://example.com" class="info-button">Mehr erfahren</a>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <div class="hover-shadow">
-                        <img src="https://i.imgur.com/R7ZewNI.jpg" alt="Bild 2">
-                        <a href="https://example.com" class="info-button">Mehr erfahren</a>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-controls">
-                <div class="dot" data-index="0"></div>
-                <div class="dot" data-index="1"></div>
-            </div>
-            <div class="arrow left"></div>
-            <div class="arrow right"></div>
-        </div>
+    <!-- Quiz-Sektion -->
+    <div class="section">
+        <!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffffff;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            overflow: hidden;
+            flex-direction: column;
+        }
 
-        <!-- Rechtes Statisches Bild -->
-        <div class="static-image-container">
-            <img src="https://i.imgur.com/nuHU6iZ.jpg" alt="Statisches Bild" class="static-image">
-            <a href="https://example.com" class="info-button">Mehr erfahren</a>
+        .main-container {
+            width: 900px;
+            height: 130px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background-color: #fff;
+            overflow: hidden;
+            transition: background-color 0.5s ease;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .container.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .container.hidden {
+            display: none;
+        }
+
+        .text-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-size: 24px;
+            color: black;
+            position: relative;
+            z-index: 2; /* Text ist über dem GIF */
+        }
+
+        .text-container .text-bold {
+            font-size: 28px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0px;
+        }
+
+        .text-container .text-normal {
+            font-size: 24px;
+            font-weight: normal;
+            display: inline;
+        }
+
+        .text-container .text-wrapper {
+            text-align: center;
+        }
+
+        .start-button {
+            margin-top: 0px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: none;
+            background-color: #2d2d30;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .start-button:hover {
+            background-color: #0071e3;
+        }
+
+        .section {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            cursor: pointer;
+            position: relative;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            height: 100%;
+        }
+
+        .section:hover {
+            background-color: #0071e3;
+            color: white;
+        }
+
+        .gif-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: none;
+            z-index: 1; /* GIF ist unter dem Text, aber vor dem Hover-Hintergrund */
+        }
+
+        .section:hover .gif-overlay {
+            display: block;
+        }
+
+        .divider {
+            width: 2px;
+            height: 100%;
+            background-color: #ccc;
+        }
+
+        .back-button {
+            margin-top: 20px; /* Abstand vom Hauptcontainer */
+            padding: 5px 10px;
+            border-radius: 10px;
+            border: 1px solid #2d2d30;
+            background-color: white;
+            color: #2d2d30;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            visibility: hidden; /* Unsichtbar beim Start */
+        }
+
+        .back-button.show {
+            visibility: visible; /* Sichtbar ab der Kategorieseite */
+        }
+
+        .back-button:hover {
+            background-color: #2d2d30;
+            color: white;
+        }
+
+        .transition-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            visibility: hidden;
+            z-index: 1;
+        }
+
+        .transition-text.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .transition-text.fade-out {
+            opacity: 0;
+        }
+
+        /* Responsive Anpassungen für kleinere Bildschirme */
+        @media (max-width: 768px) {
+            .main-container {
+                width: 100%;
+                margin: 0 10px;
+            }
+
+            .text-container .text-bold, 
+            .text-container .text-normal {
+                font-size: 22px;
+            }
+
+            .start-button {
+                font-size: 14px;
+            }
+
+            .section {
+                font-size: 22px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-container {
+                display: none; /* Versteckt den Inhalt auf sehr kleinen Bildschirmen */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-container" id="main-container">
+    <div class="container text-container active" id="start-screen">
+        <div class="text-wrapper">
+            <span class="text-bold">Spare Zeit</span>
+            <span class="text-normal">und finde was Du suchst.</span>
+        </div>
+        <button class="start-button" id="start-button">Entdeckung starten</button>
+    </div>
+
+    <div class="container hidden" id="categories-screen">
+        <div class="section" id="sport-section">
+            Sport
+            <div class="gif-overlay" id="sport-gif"></div>
+        </div>
+        <div class="divider"></div>
+        <div class="section" id="entertainment-section">
+            Unterhaltung
+            <div class="gif-overlay" id="entertainment-gif"></div>
+        </div>
+        <div class="divider"></div>
+        <div class="section" id="cooking-section">
+            Kochen
+            <div class="gif-overlay" id="cooking-gif"></div>
+        </div>
+        <div class="divider"></div>
+        <div class="section" id="nutrition-section">
+            Ernährung
+            <div class="gif-overlay" id="nutrition-gif"></div>
         </div>
     </div>
 
-    <!-- Quiz-Sektion -->
-    <div class="section">
-        <div class="main-container" id="main-container">
-            <div class="container text-container active" id="start-screen">
-                <div class="text-wrapper">
-                    <span class="text-bold">Spare Zeit</span>
-                    <span class="text-normal">und finde was Du suchst.</span>
-                </div>
-                <button class="start-button" id="start-button">Entdeckung starten</button>
-            </div>
+    <div class="container hidden" id="next-step-screen">
+        <div class="section">Das Beste kombiniert</div>
+        <div class="divider"></div>
+        <div class="section">Einzelstücke</div>
+    </div>
 
-            <div class="container hidden" id="categories-screen">
-                <div class="section" id="sport-section">
-                    Sport
-                    <div class="gif-overlay" id="sport-gif"></div>
-                </div>
-                <div class="divider"></div>
-                <div class="section" id="entertainment-section">
-                    Unterhaltung
-                    <div class="gif-overlay" id="entertainment-gif"></div>
-                </div>
-                <div class="divider"></div>
-                <div class="section" id="cooking-section">
-                    Kochen
-                    <div class="gif-overlay" id="cooking-gif"></div>
-                </div>
-                <div class="divider"></div>
-                <div class="section" id="nutrition-section">
-                    Ernährung
-                    <div class="gif-overlay" id="nutrition-gif"></div>
-                </div>
-            </div>
+    <div class="transition-text" id="transition-text"></div>
+</div>
 
-            <div class="container hidden" id="next-step-screen">
-                <div class="section">Das Beste kombiniert</div>
-                <div class="divider"></div>
-                <div class="section">Einzelstücke</div>
-            </div>
+<!-- Der Zurück-Button wird unsichtbar gestartet -->
+<button class="back-button" id="back-button">Zurück</button>
 
-            <div class="transition-text" id="transition-text"></div>
-        </div>
+<script>
+    const startScreen = document.getElementById('start-screen');
+    const startButton = document.getElementById('start-button');
+    const categoriesScreen = document.getElementById('categories-screen');
+    const nextStepScreen = document.getElementById('next-step-screen');
+    const backButton = document.getElementById('back-button');
+    const transitionText = document.getElementById('transition-text');
+    const mainContainer = document.getElementById('main-container');
 
-        <button class="back-button" id="back-button">Zurück</button>
+    const sportGif = document.getElementById('sport-gif');
+    const entertainmentGif = document.getElementById('entertainment-gif');
+    const cookingGif = document.getElementById('cooking-gif');
+    const nutritionGif = document.getElementById('nutrition-gif');
 
-        <script>
-            const startScreen = document.getElementById('start-screen');
-            const startButton = document.getElementById('start-button');
-            const categoriesScreen = document.getElementById('categories-screen');
-            const nextStepScreen = document.getElementById('next-step-screen');
-            const backButton = document.getElementById('back-button');
-            const transitionText = document.getElementById('transition-text');
-            const mainContainer = document.getElementById('main-container');
+    let currentScreen = 'start';
 
-            const sportGif = document.getElementById('sport-gif');
-            const entertainmentGif = document.getElementById('entertainment-gif');
-            const cookingGif = document.getElementById('cooking-gif');
-            const nutritionGif = document.getElementById('nutrition-gif');
+    // URLs der GIFs von Imgur
+    const sportGifUrl = 'https://i.imgur.com/fZy2kEO.gif';
+    const entertainmentGifUrl = 'https://i.imgur.com/42mXNHM.gif';
+    const cookingGifUrl = 'https://i.imgur.com/WJ0O9VX.gif';
+    const nutritionGifUrl = 'https://i.imgur.com/WTGbVLP.gif';
 
-            let currentScreen = 'start';
+    // Setze die GIFs als Hintergrundbilder der Overlays
+    sportGif.style.backgroundImage = `url(${sportGifUrl})`;
+    entertainmentGif.style.backgroundImage = `url(${entertainmentGifUrl})`;
+    cookingGif.style.backgroundImage = `url(${cookingGifUrl})`;
+    nutritionGif.style.backgroundImage = `url(${nutritionGifUrl})`;
 
-            const sportGifUrl = 'https://i.imgur.com/fZy2kEO.gif';
-            const entertainmentGifUrl = 'https://i.imgur.com/42mXNHM.gif';
-            const cookingGifUrl = 'https://i.imgur.com/WJ0O9VX.gif';
-            const nutritionGifUrl = 'https://i.imgur.com/WTGbVLP.gif';
-
-            sportGif.style.backgroundImage = `url(${sportGifUrl})`;
-            entertainmentGif.style.backgroundImage = `url(${entertainmentGifUrl})`;
-            cookingGif.style.backgroundImage = `url(${cookingGifUrl})`;
-            nutritionGif.style.backgroundImage = `url(${nutritionGifUrl})`;
-
-            function showScreen(screenToShow, transitionMessage, showTransition = true) {
-                const activeScreen = document.querySelector('.container.active');
-                if (activeScreen) {
-                    if (showTransition) {
-                        mainContainer.style.backgroundColor = '#ffffff';
-                        activeScreen.classList.remove('active');
+    function showScreen(screenToShow, transitionMessage, showTransition = true) {
+        const activeScreen = document.querySelector('.container.active');
+        if (activeScreen) {
+            if (showTransition) {
+                mainContainer.style.backgroundColor = '#ffffff';
+                activeScreen.classList.remove('active');
+                setTimeout(() => {
+                    showTransitionText(transitionMessage);
+                    setTimeout(() => {
+                        hideTransitionText();
                         setTimeout(() => {
-                            showTransitionText(transitionMessage);
-                            setTimeout(() => {
-                                hideTransitionText();
-                                setTimeout(() => {
-                                    mainContainer.style.backgroundColor = '';
-                                    activeScreen.classList.add('hidden');
-                                    screenToShow.classList.remove('hidden');
-                                    setTimeout(() => {
-                                        screenToShow.classList.add('active');
-                                    }, 50);
-                                }, 500);
-                            }, 1000);
-                        }, 500);
-                    } else {
-                        activeScreen.classList.remove('active');
-                        setTimeout(() => {
+                            mainContainer.style.backgroundColor = '';
                             activeScreen.classList.add('hidden');
                             screenToShow.classList.remove('hidden');
                             setTimeout(() => {
                                 screenToShow.classList.add('active');
                             }, 50);
-                        }, 500);
-                    }
-                }
-            }
-
-            function showTransitionText(message) {
-                transitionText.innerText = message;
-                transitionText.classList.add('active');
-            }
-
-            function hideTransitionText() {
-                transitionText.classList.add('fade-out');
+                        }, 500); // Zeit, damit der Text komplett ausblendet
+                    }, 1000); // Der Text bleibt für 1 Sekunde sichtbar
+                }, 500); // Zeit für den weißen Hintergrund
+            } else {
+                activeScreen.classList.remove('active');
                 setTimeout(() => {
-                    transitionText.classList.remove('active');
-                    transitionText.classList.remove('fade-out');
+                    activeScreen.classList.add('hidden');
+                    screenToShow.classList.remove('hidden');
+                    setTimeout(() => {
+                        screenToShow.classList.add('active');
+                    }, 50);
                 }, 500);
             }
+        }
+    }
 
-            startButton.addEventListener('click', () => {
-                showScreen(categoriesScreen, 'Kategorie wählen');
-                backButton.classList.add('show');
-                currentScreen = 'categories';
-            });
+    function showTransitionText(message) {
+        transitionText.innerText = message;
+        transitionText.classList.add('active');
+    }
 
-            document.querySelectorAll('#categories-screen .section').forEach(section => {
-                section.addEventListener('click', () => {
-                    showScreen(nextStepScreen, 'Nächster Schritt');
-                    currentScreen = 'nextStep';
-                });
-            });
+    function hideTransitionText() {
+        transitionText.classList.add('fade-out');
+        setTimeout(() => {
+            transitionText.classList.remove('active');
+            transitionText.classList.remove('fade-out');
+        }, 500); // Zeit, damit der Text sauber ausblendet
+    }
 
-            backButton.addEventListener('click', () => {
-                if (currentScreen === 'categories') {
-                    showScreen(startScreen, '', false);
-                    backButton.classList.remove('show');
-                    currentScreen = 'start';
-                } else if (currentScreen === 'nextStep') {
-                    showScreen(categoriesScreen, '', false);
-                    currentScreen = 'categories';
-                }
-            });
-        </script>
+    startButton.addEventListener('click', () => {
+        showScreen(categoriesScreen, 'Kategorie wählen');
+        backButton.classList.add('show'); // Zeigt den Button ab der Kategorieseite an
+        currentScreen = 'categories';
+    });
+
+    document.querySelectorAll('#categories-screen .section').forEach(section => {
+        section.addEventListener('click', () => {
+            showScreen(nextStepScreen, 'Nächster Schritt');
+            currentScreen = 'nextStep';
+        });
+    });
+
+    backButton.addEventListener('click', () => {
+        if (currentScreen === 'categories') {
+            showScreen(startScreen, '', false);
+            backButton.classList.remove('show'); // Versteckt den Button wieder, wenn zurück zur Startseite
+            currentScreen = 'start';
+        } else if (currentScreen === 'nextStep') {
+            showScreen(categoriesScreen, '', false);
+            currentScreen = 'categories';
+        }
+    });
+</script>
+
+</body>
+</html>
     </div>
 
 </body>
