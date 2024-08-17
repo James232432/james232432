@@ -21,6 +21,7 @@
             max-height: 100%;
             overflow: hidden;
             margin-bottom: 20px;
+            position: relative;
         }
         .slides {
             display: flex;
@@ -38,6 +39,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            background-color: #ccc; /* Fallback-Farbe, falls das Bild nicht geladen wird */
         }
         .dots {
             position: absolute;
@@ -47,6 +49,7 @@
             display: flex;
             justify-content: center;
             gap: 5px;
+            z-index: 10;
         }
         .dot {
             width: 10px;
@@ -65,14 +68,17 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            opacity: 0;
+            opacity: 0.7;
             transition: opacity 0.3s ease;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            z-index: 10;
         }
         .arrow.left {
             left: 10px;
@@ -85,8 +91,8 @@
             display: block;
             width: 10px;
             height: 10px;
-            border-left: 2px solid #2d2d30;
-            border-bottom: 2px solid #2d2d30;
+            border-left: 2px solid white;
+            border-bottom: 2px solid white;
         }
         .arrow.left:before {
             transform: rotate(45deg);
@@ -120,6 +126,7 @@
             height: 100%;
             object-fit: cover;
             border-radius: 15px;
+            background-color: #ccc; /* Fallback-Farbe, falls das Bild nicht geladen wird */
         }
 
         /* Styles für das untere Karussell */
@@ -150,6 +157,7 @@
             display: block;
             transition: transform 0.3s ease;
             object-fit: cover;
+            background-color: #ccc; /* Fallback-Farbe, falls das Bild nicht geladen wird */
         }
         .info-button {
             position: absolute;
@@ -199,15 +207,15 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            background-color: transparent;
+            background-color: rgba(0, 0, 0, 0.5);
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            opacity: 0;
+            opacity: 0.7;
             transition: opacity 0.3s ease;
         }
         .arrow.left {
