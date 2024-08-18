@@ -6,39 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Ein moderner Webshop mit responsivem Design und umfassenden Funktionen.">
     <title>Mein Webshop</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-        /* Eigene CSS-Stile */
-        body {
-            font-family: 'Arial', sans-serif;
-        }
-
-        .product-card img {
-            transition: transform 0.3s ease;
-        }
-
-        .product-card img:hover {
-            transform: scale(1.1);
-        }
-
-        .product-card {
-            transition: box-shadow 0.3s ease;
-        }
-
-        .product-card:hover {
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Lazy Loading für Bilder */
-        img.lazy {
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-        }
-
-        img.lazy.loaded {
-            opacity: 1;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="bg-gray-100 text-gray-800">
@@ -77,7 +46,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Einzelnes Produkt -->
                 <div class="bg-white p-4 rounded shadow-md product-card">
-                    <img src="product1.jpg" alt="Produkt 1" class="w-full h-48 object-cover mb-4 lazy" data-src="product1.jpg">
+                    <img src="https://i.imgur.com/1.jpg" alt="Produkt 1" class="w-full h-48 object-cover mb-4 lazy" data-src="https://i.imgur.com/1.jpg">
                     <h3 class="text-xl font-bold mb-2">Produkt 1</h3>
                     <p class="text-gray-600 mb-4">Eine kurze Beschreibung des Produkts.</p>
                     <p class="text-lg font-bold mb-4">€29,99</p>
@@ -86,7 +55,7 @@
 
                 <!-- Wiederhole das für mehrere Produkte -->
                 <div class="bg-white p-4 rounded shadow-md product-card">
-                    <img src="product2.jpg" alt="Produkt 2" class="w-full h-48 object-cover mb-4 lazy" data-src="product2.jpg">
+                    <img src="https://i.imgur.com/2.jpg" alt="Produkt 2" class="w-full h-48 object-cover mb-4 lazy" data-src="https://i.imgur.com/2.jpg">
                     <h3 class="text-xl font-bold mb-2">Produkt 2</h3>
                     <p class="text-gray-600 mb-4">Eine kurze Beschreibung des Produkts.</p>
                     <p class="text-lg font-bold mb-4">€19,99</p>
@@ -94,6 +63,21 @@
                 </div>
 
                 <!-- Weitere Produkte... -->
+                <div class="bg-white p-4 rounded shadow-md product-card">
+                    <img src="https://i.imgur.com/3.jpg" alt="Produkt 3" class="w-full h-48 object-cover mb-4 lazy" data-src="https://i.imgur.com/3.jpg">
+                    <h3 class="text-xl font-bold mb-2">Produkt 3</h3>
+                    <p class="text-gray-600 mb-4">Eine kurze Beschreibung des Produkts.</p>
+                    <p class="text-lg font-bold mb-4">€39,99</p>
+                    <button class="bg-blue-500 text-white px-4 py-2 rounded add-to-cart" data-product-id="3">In den Warenkorb</button>
+                </div>
+
+                <div class="bg-white p-4 rounded shadow-md product-card">
+                    <img src="https://i.imgur.com/4.jpg" alt="Produkt 4" class="w-full h-48 object-cover mb-4 lazy" data-src="https://i.imgur.com/4.jpg">
+                    <h3 class="text-xl font-bold mb-2">Produkt 4</h3>
+                    <p class="text-gray-600 mb-4">Eine kurze Beschreibung des Produkts.</p>
+                    <p class="text-lg font-bold mb-4">€49,99</p>
+                    <button class="bg-blue-500 text-white px-4 py-2 rounded add-to-cart" data-product-id="4">In den Warenkorb</button>
+                </div>
             </div>
         </div>
     </section>
@@ -149,68 +133,7 @@
         </div>
     </footer>
 
-    <script>
-        // Lazy Loading für Bilder
-        document.addEventListener("DOMContentLoaded", function () {
-            const lazyImages = document.querySelectorAll("img.lazy");
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.src = img.dataset.src;
-                        img.classList.remove("lazy");
-                        img.classList.add("loaded");
-                        observer.unobserve(img);
-                    }
-                });
-            });
-
-            lazyImages.forEach(image => {
-                imageObserver.observe(image);
-            });
-        });
-
-        // Einfaches Warenkorb-System
-        const cart = [];
-        const cartButton = document.querySelectorAll('.add-to-cart');
-        const cartDisplay = document.querySelector('#cart-items');
-
-        cartButton.forEach(button => {
-            button.addEventListener('click', function () {
-                const productId = this.dataset.productId;
-                addToCart(productId);
-                updateCartDisplay();
-            });
-        });
-
-        function addToCart(productId) {
-            const productIndex = cart.findIndex(product => product.id === productId);
-            if (productIndex > -1) {
-                cart[productIndex].quantity += 1;
-            } else {
-                cart.push({ id: productId, quantity: 1 });
-            }
-        }
-
-        function updateCartDisplay() {
-            if (cart.length > 0) {
-                let cartHtml = '';
-                cart.forEach(item => {
-                    cartHtml += `<p>Produkt ID: ${item.id} | Menge: ${item.quantity}</p>`;
-                });
-                cartDisplay.innerHTML = cartHtml;
-            } else {
-                cartDisplay.innerHTML = '<p class="text-lg">Ihr Warenkorb ist leer.</p>';
-            }
-        }
-
-        // Checkout Button (nur ein Platzhalter für echte Zahlungsintegration)
-        const checkoutButton = document.querySelector('#checkout-button');
-        checkoutButton.addEventListener('click', function () {
-            alert('Weiter zur Kasse - Zahlungsintegration erforderlich!');
-        });
-
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>

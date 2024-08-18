@@ -1,0 +1,30 @@
+/* Eigene CSS-Stile */
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+.product-card img {
+    transition: transform 0.3s ease;
+}
+
+.product-card img:hover {
+    transform: scale(1.1);
+}
+
+.product-card {
+    transition: box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Lazy Loading für Bilder */
+img.lazy {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+img.lazy.loaded {
+    opacity: 1;
+}
