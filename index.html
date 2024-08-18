@@ -1,139 +1,54 @@
 <!DOCTYPE html>
 <html lang="de">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Ein moderner Webshop mit responsivem Design und umfassenden Funktionen.">
-    <title>Mein Webshop</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <title>Unternehmen Website</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+<body>
 
-<body class="bg-gray-100 text-gray-800">
-
-    <!-- Header -->
-    <header class="bg-white shadow-md sticky top-0 z-50">
-        <div class="container mx-auto p-4 flex justify-between items-center">
-            <h1 class="text-3xl font-bold">Mein Webshop</h1>
-            <nav>
-                <ul class="flex space-x-4">
-                    <li><a href="#home" class="hover:text-blue-500">Home</a></li>
-                    <li><a href="#products" class="hover:text-blue-500">Produkte</a></li>
-                    <li><a href="#about" class="hover:text-blue-500">Über uns</a></li>
-                    <li><a href="#contact" class="hover:text-blue-500">Kontakt</a></li>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="logo.png" alt="Logo">
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">Über uns</a></li>
+                    <li><a href="#services">Dienstleistungen</a></li>
+                    <li><a href="#contact">Kontakt</a></li>
                 </ul>
             </nav>
-            <div>
-                <a href="#cart" class="hover:text-blue-500">Warenkorb (0)</a>
-            </div>
+        </div>
+        <div class="company-name">
+            <h1>Unternehmensname</h1>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="bg-blue-500 text-white py-20">
-        <div class="container mx-auto text-center">
-            <h2 class="text-4xl font-bold mb-4">Willkommen in unserem Webshop</h2>
-            <p class="text-lg mb-6">Entdecken Sie die besten Produkte zu den besten Preisen!</p>
-            <a href="#products" class="bg-white text-blue-500 px-6 py-3 rounded">Jetzt shoppen</a>
-        </div>
-    </section>
-
-    <!-- Produktübersicht -->
-    <section id="products" class="py-16">
-        <div class="container mx-auto">
-            <h2 class="text-3xl font-bold mb-8 text-center">Unsere Produkte</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Einzelnes Produkt -->
-                <div class="bg-white p-4 rounded shadow-md product-card">
-                    <img src="https://i.imgur.com/1.jpg" alt="Produkt 1" class="w-full h-48 object-cover mb-4 lazy" data-src="https://i.imgur.com/1.jpg">
-                    <h3 class="text-xl font-bold mb-2">Produkt 1</h3>
-                    <p class="text-gray-600 mb-4">Eine kurze Beschreibung des Produkts.</p>
-                    <p class="text-lg font-bold mb-4">€29,99</p>
-                    <button class="bg-blue-500 text-white px-4 py-2 rounded add-to-cart" data-product-id="1">In den Warenkorb</button>
-                </div>
-
-                <!-- Wiederhole das für mehrere Produkte -->
-                <div class="bg-white p-4 rounded shadow-md product-card">
-                    <img src="https://i.imgur.com/2.jpg" alt="Produkt 2" class="w-full h-48 object-cover mb-4 lazy" data-src="https://i.imgur.com/2.jpg">
-                    <h3 class="text-xl font-bold mb-2">Produkt 2</h3>
-                    <p class="text-gray-600 mb-4">Eine kurze Beschreibung des Produkts.</p>
-                    <p class="text-lg font-bold mb-4">€19,99</p>
-                    <button class="bg-blue-500 text-white px-4 py-2 rounded add-to-cart" data-product-id="2">In den Warenkorb</button>
-                </div>
-
-                <!-- Weitere Produkte... -->
-                <div class="bg-white p-4 rounded shadow-md product-card">
-                    <img src="https://i.imgur.com/3.jpg" alt="Produkt 3" class="w-full h-48 object-cover mb-4 lazy" data-src="https://i.imgur.com/3.jpg">
-                    <h3 class="text-xl font-bold mb-2">Produkt 3</h3>
-                    <p class="text-gray-600 mb-4">Eine kurze Beschreibung des Produkts.</p>
-                    <p class="text-lg font-bold mb-4">€39,99</p>
-                    <button class="bg-blue-500 text-white px-4 py-2 rounded add-to-cart" data-product-id="3">In den Warenkorb</button>
-                </div>
-
-                <div class="bg-white p-4 rounded shadow-md product-card">
-                    <img src="https://i.imgur.com/4.jpg" alt="Produkt 4" class="w-full h-48 object-cover mb-4 lazy" data-src="https://i.imgur.com/4.jpg">
-                    <h3 class="text-xl font-bold mb-2">Produkt 4</h3>
-                    <p class="text-gray-600 mb-4">Eine kurze Beschreibung des Produkts.</p>
-                    <p class="text-lg font-bold mb-4">€49,99</p>
-                    <button class="bg-blue-500 text-white px-4 py-2 rounded add-to-cart" data-product-id="4">In den Warenkorb</button>
-                </div>
+    <!-- Bild Slider Section -->
+    <section class="slider-section">
+        <div class="slider">
+            <div class="slides">
+                <div class="slide"><img src="https://i.imgur.com/OhY5hBy.jpg" alt="Bild 1"></div>
+                <div class="slide"><img src="https://i.imgur.com/xca3TGg.jpg" alt="Bild 2"></div>
+                <div class="slide"><img src="https://i.imgur.com/bRFkewI.jpg" alt="Bild 3"></div>
             </div>
         </div>
     </section>
 
-    <!-- Über uns -->
-    <section id="about" class="py-16 bg-gray-200">
-        <div class="container mx-auto text-center">
-            <h2 class="text-3xl font-bold mb-8">Über uns</h2>
-            <p class="text-lg mb-4">Wir sind ein engagiertes Team, das Ihnen die besten Produkte zu den besten Preisen anbietet. Unsere Mission ist es, Ihnen ein unvergessliches Einkaufserlebnis zu bieten.</p>
-            <p class="text-lg">Kontaktieren Sie uns bei Fragen oder Anregungen!</p>
+    <!-- Vier kleine Rechtecke -->
+    <section class="features-section">
+        <div class="features-container">
+            <div class="feature-box">Feature 1</div>
+            <div class="feature-box">Feature 2</div>
+            <div class="feature-box">Feature 3</div>
+            <div class="feature-box">Feature 4</div>
         </div>
+        <h2>Handverlesen für dich</h2>
     </section>
 
-    <!-- Kontakt -->
-    <section id="contact" class="py-16">
-        <div class="container mx-auto text-center">
-            <h2 class="text-3xl font-bold mb-8">Kontakt</h2>
-            <form class="max-w-lg mx-auto">
-                <div class="mb-4">
-                    <label for="name" class="block text-left mb-2">Name</label>
-                    <input type="text" id="name" class="w-full px-4 py-2 border rounded" required>
-                </div>
-                <div class="mb-4">
-                    <label for="email" class="block text-left mb-2">E-Mail</label>
-                    <input type="email" id="email" class="w-full px-4 py-2 border rounded" required>
-                </div>
-                <div class="mb-4">
-                    <label for="message" class="block text-left mb-2">Nachricht</label>
-                    <textarea id="message" class="w-full px-4 py-2 border rounded" rows="4" required></textarea>
-                </div>
-                <button type="submit" class="bg-blue-500 text-white px-6 py-2 rounded">Nachricht senden</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Warenkorb -->
-    <section id="cart" class="py-16 bg-gray-200">
-        <div class="container mx-auto text-center">
-            <h2 class="text-3xl font-bold mb-8">Ihr Warenkorb</h2>
-            <div id="cart-items" class="mb-8">
-                <!-- Dynamisch gefüllter Warenkorb -->
-                <p class="text-lg">Ihr Warenkorb ist leer.</p>
-            </div>
-            <button id="checkout-button" class="bg-green-500 text-white px-6 py-2 rounded">Zur Kasse</button>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-6">
-        <div class="container mx-auto text-center">
-            <p>&copy; 2024 Mein Webshop. Alle Rechte vorbehalten.</p>
-            <p><a href="#privacy" class="underline">Datenschutz</a> | <a href="#terms" class="underline">AGB</a></p>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
 </body>
-
 </html>
